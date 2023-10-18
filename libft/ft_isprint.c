@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_isprint.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2022/10/06 11:01:14 by tde-brui      #+#    #+#                 */
+/*   Updated: 2022/10/06 15:46:09 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include <stdio.h>
-
-int	main(void)
+int	ft_isprint(int a)
 {
-	return (0);
+	if (a < 127 && a > 31)
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }

@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_strmapi.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2022/10/13 15:08:26 by tde-brui      #+#    #+#                 */
+/*   Updated: 2022/10/21 17:56:02 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(void)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	return (0);
+	unsigned int	i;
+	unsigned int	j;
+	char			*ptr;
+
+	i = 0;
+	j = ft_strlen(s);
+	if (!s)
+		return ((char *)s);
+	ptr = (char *)malloc(j + 1);
+	if (!ptr)
+		return (NULL);
+	while (s[i])
+	{
+		ptr[i] = f(i, s[i]);
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
 }

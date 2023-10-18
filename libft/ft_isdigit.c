@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_isdigit.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2022/10/06 11:01:10 by tde-brui      #+#    #+#                 */
+/*   Updated: 2023/01/18 12:25:26 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include <stdio.h>
-
-int	main(void)
+int	ft_isdigit(int a)
 {
-	return (0);
+	if (a > 47 && a < 58)
+		return (1);
+	else
+		return (0);
 }

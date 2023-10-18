@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memset.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2022/10/06 11:01:24 by tde-brui      #+#    #+#                 */
+/*   Updated: 2022/10/21 17:33:28 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(void)
+void	*ft_memset(void *str, int val, size_t size)
 {
-	return (0);
+	unsigned long		i;
+	unsigned char		*ptr;
+
+	i = 0;
+	ptr = (unsigned char *)str;
+	while (i < size)
+	{
+		ptr[i] = val;
+		i++;
+	}
+	return (str);
 }

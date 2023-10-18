@@ -1,20 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   list_len.c                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2023/03/15 15:50:55 by tde-brui      #+#    #+#                 */
+/*   Updated: 2023/03/15 15:52:59 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(void)
+int	list_len(t_list **stack)
 {
-	return (0);
+	t_list	*head;
+	int		i;
+
+	head = (*stack);
+	i = 0;
+	while (head->next != NULL)
+	{
+		head = head->next;
+		i++;
+	}
+	return (i);
 }

@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_tolower.c                                       :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2022/10/06 11:01:49 by tde-brui      #+#    #+#                 */
+/*   Updated: 2022/10/06 11:04:57 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
-
-#include <stdio.h>
-
-int	main(void)
+int	ft_tolower(int a)
 {
-	return (0);
+	if (a < 91 && a > 64)
+	{
+		return (a + 32);
+	}
+	else
+	{
+		return (a);
+	}
 }

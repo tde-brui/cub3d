@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
+/*   ft_memchr.c                                        :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/10/18 15:26:33 by tde-brui      ########   odam.nl         */
+/*   Created: 2022/10/06 15:01:21 by tde-brui      #+#    #+#                 */
+/*   Updated: 2022/10/21 15:13:46 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-#include <stdio.h>
-
-int	main(void)
+void	*ft_memchr(const void *ptr, int value, size_t size)
 {
-	return (0);
+	unsigned long	i;
+	char			*ptr1;
+
+	i = 0;
+	ptr1 = (char *)ptr;
+	while (i < size)
+	{
+		if (ptr1[i] == (char)value)
+		{
+			return (&ptr1[i]);
+		}
+		i++;
+	}
+	return (NULL);
 }
