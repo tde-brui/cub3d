@@ -1,4 +1,4 @@
-SOURCES		:=	main.c
+SOURCES		:=	main.c mlx.c
 VPATH		:=	src/
 BUILD		:=	build
 OBJECTS		:=	$(addprefix $(BUILD)/, $(SOURCES:.c=.o))
