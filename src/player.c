@@ -1,29 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/04 17:50:20 by sschelti         ###   ########.fr       */
+/*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
+/*   Updated: 2023/12/04 17:50:26 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../inc/cub3d.h"
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+t_player	*player_init(mlx_t *mlx)
 {
-	mlx_t		*mlx;
 	t_player	*player;
 
-	mlx = create_window();
-	player = player_init(mlx);
-	mlx_loop_hook(mlx, ft_hooks, player);
-	mlx_loop(mlx);
-	return (1);
+	player = malloc(sizeof(player));
+	player->x_pos = 5;
+	player->y_pos = 5;
+	player->mlx = mlx;
+	return (player);
 }
-
-
