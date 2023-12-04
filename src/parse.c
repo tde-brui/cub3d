@@ -6,30 +6,12 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:52 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 15:22:58 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/04 16:55:29 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
-#include <fcntl.h>
 
-void	*ft_malloc(size_t size)
-{
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-		exit(1);
-	return (ptr);
-}
-
-int	map_init(t_map *map, char *cub)
-{
-	map = ft_malloc(sizeof(t_map));
-	map->textures = ft_malloc(sizeof(t_textures));
-	map->height = get_height(cub);
-	map->width = get_width(cub);
-}
 void	free_split(char **ptr)
 {
 	int	i;
@@ -51,7 +33,7 @@ void	parse_textures(char *line, t_textures *textures)
 
 	split = ft_split(line, ' ');
 	if (!ft_strncmp("NO", split[0], 2))
-		textures->north = ft_stdrup(split[1]);
+		textures->north = ft_strdup(split[1]);
 	else if (ft_strncmp("EA", split[0], 2))
 		textures->east = ft_strdup(split[1]);
 	else if (ft_strncmp("SO", split[0], 2))
@@ -64,11 +46,6 @@ void	parse_textures(char *line, t_textures *textures)
 		textures->ceiling = ft_strdup(split[1]);
 	free_split(split);
 }
-
-void	parse_map(char *line, t_map *map, int i)
-{
-}
-
 
 t_map	*parse_cub(char *cub)
 {
@@ -92,6 +69,7 @@ t_map	*parse_cub(char *cub)
 			parse_map(line, map, i);
 			i++;
 		}
+		free(line);
 	}
 	close(fd);
 }

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 15:27:04 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/04 16:52:42 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,8 @@
 
 # define WIDTH 512
 # define HEIGHT 512
-
-int	testmap[10][10] =
-{
-	{1,1,1,1,1,1,1,1,1,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,0,0,0,0,0,0,0,0,1},
-	{1,1,1,1,1,1,1,1,1,1}
-};
+# include "parse.h"
+# include <stdio.h>
 
 typedef struct player
 {
@@ -52,5 +40,6 @@ typedef struct ray
 }t_ray;
 
 void    create_window();
+t_map	*parse_cub(char *cub);
 
 #endif
