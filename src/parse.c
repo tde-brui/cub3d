@@ -6,11 +6,12 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:52 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 16:55:29 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/04 18:33:39 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
+#include <stdio.h>
 
 void	free_split(char **ptr)
 {
@@ -54,12 +55,13 @@ t_map	*parse_cub(char *cub)
 	char		*line;
 	int			i;
 
-	map_init(map, cub);
+	map_init(&map, cub);
 	fd = open(cub, O_RDONLY);
 	i = 0;
 	while (1)
 	{
 		line = get_next_line(fd);
+		printf("%s\n", line);
 		if (!line)
 			break ;
 		if (line[0] != '1')
@@ -71,5 +73,7 @@ t_map	*parse_cub(char *cub)
 		}
 		free(line);
 	}
+	printf("start position: %d, %d\n", map->start_pos_x, map->start_pos_y);
 	close(fd);
+	return (map);
 }

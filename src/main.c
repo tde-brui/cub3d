@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 17:14:44 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/04 18:36:01 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	print_map(t_map *map)
 		j = 0;
 		while (j < map->width)
 		{
+			//printf("%d\n", map->map[i][j]);
 			printf("%d,", map->map[i][j]);
 			j++;
 		}
@@ -37,9 +38,8 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	create_window();
+	//create_window();
 	map = parse_cub(argv[1]);
-	printf("map height %d\n", map->height);
-	//print_map(map);
+	print_map(map);
 	return (1);
 }

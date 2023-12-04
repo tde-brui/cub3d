@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 16:35:45 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/04 17:54:21 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	get_width(char *file)
 
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
-	width = ft_stringsnum(line, ' ');
+	width = ft_strlen(line);
 	free(line);
 	close(fd);
 	return (width);

@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 17:11:31 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/04 18:09:49 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct Map
 void	*ft_malloc(size_t size);
 int		get_height(char *file);
 int		get_width(char *file);
-void	map_init(t_map *map, char *cub);
+void	map_init(t_map **map, char *cub);
 void	parse_map(char *line, t_map *map, int i);
 
 #endif
