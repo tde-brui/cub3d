@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 17:54:21 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/06 17:13:39 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	*ft_malloc(size_t size)
 int	get_height(char *file)
 {
 	int		fd;
+	int		i;
 	int		height;
 	char	*line;
 
@@ -32,26 +33,44 @@ int	get_height(char *file)
 	height = 0;
 	while (1)
 	{
+		i = 0;
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		free(line);
+		while (line[i] == ' ')
+			i++;
+		if (line[i] != '1')
+			continue ;
 		height++;
+		free(line);
 	}
 	close(fd);
 	return (height);
 }
 
-int	get_width(char *file)
+int	get_max_width(char *file)
 {
 	int		fd;
+	int		i;
 	int		width;
 	char	*line;
 
 	fd = open(file, O_RDONLY);
-	line = get_next_line(fd);
-	width = ft_strlen(line);
-	free(line);
+	width = 0;
+	while (1)
+	{
+		i = 0;
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		while (line[i] == ' ')
+			i++;
+		if (line[i] != '1')
+			continue ;
+		if (ft_strlen(line) - 1 > (size_t)width)
+			width = ft_strlen(line) - 1;
+		free(line);
+	}
 	close(fd);
 	return (width);
 }

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 18:36:01 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/06 17:59:15 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,23 @@
 
 void	print_map(t_map *map)
 {
-	int	i;
-	int	j;
+	int i;
+	int j;
 
 	i = 0;
+	j = 0;
 	while (i < map->height)
 	{
 		j = 0;
 		while (j < map->width)
 		{
-			//printf("%d\n", map->map[i][j]);
-			printf("%d,", map->map[i][j]);
+			printf("%d ", map->map[i][j]);
 			j++;
 		}
 		printf("\n");
 		i++;
 	}
+	
 }
 int	main(int argc, char **argv)
 {
