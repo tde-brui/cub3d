@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/06 14:54:56 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/06 17:01:02 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ typedef struct player
 
 	double	x_plane;
 	double	y_plane;
+
+	double	time;
+	double	oldtime;
 	
 	mlx_t	*mlx;
 }t_player;
 
 typedef struct ray
 {
-	double	x_pos;
-	double	y_pos;
-
 	double	x_dir;
 	double	y_dir;
 }t_ray;
@@ -44,5 +44,6 @@ int			create_window(mlx_t **mlx);
 t_player	*player_init(mlx_t *mlx);
 void		ft_hooks(void *param);
 int			cleanup(t_player *player, mlx_t *mlx, int errno);
+void		raycasting(t_player *player);
 
 #endif

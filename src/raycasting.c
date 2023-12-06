@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/06 16:39:23 by sschelti         ###   ########.fr       */
+/*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
+/*   Updated: 2023/12/06 18:08:05 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "../inc/cub3d.h"
-#include <stdio.h>
 
-
-
-int	main(int argc, char **argv)
+void    raycasting(t_player *player)
 {
-	mlx_t		*mlx;
-	t_player	*player;
+    t_ray ray;
+    double cameraX;
+    double x;
 
-	if (create_window(&mlx))
-		return (mlx_errno);
-	player = player_init(mlx);
-	if (!player)
-		return (cleanup(NULL, mlx, 1));
-	raycasting(player);
-	mlx_loop_hook(mlx, ft_hooks, player);
-	mlx_loop(mlx);
-	return (cleanup(player, mlx, 0));
+    cameraX = 0;
+    x = 0;
+    while (x < WIDTH)
+    {
+        cameraX = 2 * x / (double)WIDTH - 1;
+        ray.x_dir = player->x_dir + player->x_plane * cameraX;
+        ray.y_dir = player->y_dir + player->y_plane * cameraX;
+        x++;
+    }
 }
-
-
