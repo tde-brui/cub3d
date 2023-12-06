@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/04 17:51:29 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/06 15:11:04 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,30 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-mlx_t	*create_window(void)
+int	create_window(mlx_t **mlx)
 {
-	mlx_t		*mlx;
 	mlx_image_t	*image;
 
-	mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
-	if (!mlx)
+	*mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 1);
+	if (!(*mlx))
 	{
 		printf("%s\n", mlx_strerror(mlx_errno));
 		exit (1);
 	}
-	image = mlx_new_image(mlx, 128, 128);
+	image = mlx_new_image(*mlx, 128, 128);
 	if (!image)
 	{
-		mlx_close_window(mlx);
+		mlx_close_window(*mlx);
 		printf("%s\n", mlx_strerror(mlx_errno));
-		exit (1);
+		return (cleanup(NULL, *mlx, mlx_errno));
 	}
-	if (mlx_image_to_window(mlx, image, 0, 0) == -1)
+	if (mlx_image_to_window(*mlx, image, 0, 0) == -1)
 	{
-		mlx_close_window(mlx);
+		mlx_close_window(*mlx);
 		printf("%s\n", mlx_strerror(mlx_errno));
-		exit (1);
+		return (cleanup(NULL, *mlx, mlx_errno));
 	}
-	return (mlx);
+	return (0);
 }
 
 void	ft_hooks(void *param)
@@ -48,6 +47,15 @@ void	ft_hooks(void *param)
 
 	player = param;
 	mlx = player->mlx;
+	if(mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+		mlx_close_window(mlx);
 	if(mlx_is_key_down(mlx, MLX_KEY_W))
-		;
+		player->y_pos += 0.03;
+	if(mlx_is_key_down(mlx, MLX_KEY_S))
+		player->y_pos -= 0.03;
+	if(mlx_is_key_down(mlx, MLX_KEY_D))
+		player->x_pos += 0.03;
+	if(mlx_is_key_down(mlx, MLX_KEY_A))
+		player->x_pos -= 0.03;
+	// printf("x_pos: %f, y_pos: %f\n", player->x_pos, player->y_pos);
 }

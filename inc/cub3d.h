@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/04 17:49:19 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/06 14:54:56 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ typedef struct ray
 	double	y_dir;
 }t_ray;
 
-mlx_t		*create_window(void);
+int			create_window(mlx_t **mlx);
 t_player	*player_init(mlx_t *mlx);
 void		ft_hooks(void *param);
+int			cleanup(t_player *player, mlx_t *mlx, int errno);
 
 #endif
