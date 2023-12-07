@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/06 18:10:14 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/07 13:07:59 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,13 @@ void	map_init(t_map **map, char *cub)
 	}
 }
 
+int	determine_width(t_map *map, int i, char *line)
+{
+	if (map->height == i + 1)
+		return (ft_strlen(line));
+	return (ft_strlen(line) - 1);
+}
+
 void	parse_map(char *line, t_map *map, int i, char *cub)
 {
 	int	j;
@@ -63,7 +70,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 		map->map[i][j] = 0;
 		j++;
 	}
-	width = ft_strlen(line) - 1;
+	width = determine_width(map, i, line);
 	printf("width: %d\n", width);
 	while (j < width)
 	{
