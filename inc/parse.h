@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/04 15:07:48 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/06 16:58:58 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,16 @@
 # define PARSE_H
 
 # include <stdlib.h>
-# include "libft/libft.h"
+# include "../libs/libft/libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+
+typedef struct rgb
+{
+	int	r;
+	int	g;
+	int	b;
+}t_rgb;
 
 typedef struct Textures
 {
@@ -22,18 +31,26 @@ typedef struct Textures
 	char	*east;
 	char	*south;
 	char	*west;
-	char	*floor;
-	char	*ceiling;
+	t_rgb	*floor;
+	t_rgb	*ceiling;
 }t_textures;
 
 typedef struct Map
 {
 	t_textures	*textures;
-	char		**map;
+	int			**map;
 	int			width;
 	int			height;
-	int			start_pos;
+	int			start_pos_x;
+	int			start_pos_y;
 	char		start_dir;
 }t_map;
+
+
+void	*ft_malloc(size_t size);
+int		get_height(char *file);
+int		get_max_width(char *file);
+void	map_init(t_map **map, char *cub);
+void	parse_map(char *line, t_map *map, int i, char *cub);
 
 #endif
