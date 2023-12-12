@@ -1,19 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/06 16:38:52 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
+/*   Updated: 2023/12/12 13:06:02 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdio.h>
-#include <stdbool.h>
-#include <stdlib.h>
 
 int	create_window(mlx_t **mlx)
 {

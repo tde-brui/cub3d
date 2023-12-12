@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/07 13:07:59 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/12 14:42:08 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 		{
 			map->start_pos_x = j;
 			map->start_pos_y = i;
+			map->start_dir = line[j];
 			map->map[i][j] = 50;
 		}
 		else if (line[j] == '1' || line[j] == '0')

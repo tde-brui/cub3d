@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/06 16:39:23 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
+/*   Updated: 2023/12/12 14:22:39 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,9 @@ int	main(int argc, char **argv)
 
 	if (create_window(&mlx))
 		return (mlx_errno);
-  map = parse_cub(argv[1]);
-	player = player_init(mlx);
+  	map = parse_cub(argv[1]);
+	printf("Start position row %d column %d\n", map->start_pos_y, map->start_pos_x);
+	player = player_init(mlx, map);
 	if (!player)
 		return (cleanup(NULL, mlx, 1));
 	raycasting(player);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/08 17:36:42 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
+/*   Updated: 2023/12/12 14:45:14 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <math.h>
 # include "parse.h"
 # include <stdio.h>
+# include <stdbool.h>
+# include <stdlib.h>
 
 typedef struct player
 {
@@ -51,11 +53,15 @@ typedef struct ray
 	double	side_dist_x;
 	double	side_dist_y;
 
-	
+	double 	step_x;
+	double 	step_y;
+
+	int		x_map;
+	int		y_map;
 }t_ray;
 
 int			create_window(mlx_t **mlx);
-t_player	*player_init(mlx_t *mlx);
+t_player	*player_init(mlx_t *mlx, t_map *map);
 void		ft_hooks(void *param);
 int			cleanup(t_player *player, mlx_t *mlx, int errno);
 void		raycasting(t_player *player);
