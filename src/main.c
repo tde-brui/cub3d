@@ -14,15 +14,15 @@
 #include "../inc/cub3d.h"
 #include <stdio.h>
 
-
-
 int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
+  t_map   *map;
 	t_player	*player;
 
 	if (create_window(&mlx))
 		return (mlx_errno);
+  map = parse_cub(argv[1]);
 	player = player_init(mlx);
 	if (!player)
 		return (cleanup(NULL, mlx, 1));
@@ -31,5 +31,23 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx);
 	return (cleanup(player, mlx, 0));
 }
+  
+void	print_map(t_map *map)
+{
+	int i;
+	int j;
 
-
+	i = 0;
+	j = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			printf("%d ", map->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}

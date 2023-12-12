@@ -12,6 +12,7 @@
 
 #include "../inc/cub3d.h"
 #include <stdio.h>
+#include <stdbool.h>
 #include <stdlib.h>
 
 int	create_window(mlx_t **mlx)

@@ -17,6 +17,8 @@
 # define HEIGHT 512
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include <math.h>
+# include "parse.h"
+# include <stdio.h>
 
 typedef struct player
 {
@@ -59,5 +61,6 @@ int			cleanup(t_player *player, mlx_t *mlx, int errno);
 void		raycasting(t_player *player);
 void    	calculate_delta_dist(t_ray *ray);
 void    	calculate_step_side_dist(t_player *player, t_ray *ray);
+t_map	*parse_cub(char *cub);
 
 #endif
