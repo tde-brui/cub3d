@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/07 13:01:00 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/12 12:10:58 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 {
 	t_map	*map;
 
-	//create_window();
+	create_window();
 	map = parse_cub(argv[1]);
 	print_map(map);
 	return (0);
