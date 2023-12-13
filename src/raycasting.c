@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/08 17:34:28 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:34:04 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,31 @@ void    calculate_delta_dist(t_ray *ray)
 
 void    calculate_step_side_dist(t_player *player, t_ray *ray)
 {
-        player->x_map = (int)player->x_pos;
-        player->y_map = (int)player->y_pos;
+    int x_map;
+    int y_map;
+
+    x_map = (int)player->x_pos;
+    y_map = (int)player->y_pos;
+    if (ray->x_dir > 0)
+    {
+        ray->stepx = 1;
+        ray->side_dist_x = (x_map + 1.0 - player->x_pos) * ray->side_dist_x;
+    }
+    else
+    {
+        ray->stepx = -1;
+        ray->side_dist_x = (player->x_pos - x_map) * ray->side_dist_x;
+    }
+    if (ray->y_dir > 0)
+    {
+        ray->stepy = 1;
+        ray->side_dist_y = (y_map + 1.0 - player->y_pos) * ray->side_dist_y;
+    }
+    else
+    {
+        ray->stepy = -1;
+        ray->side_dist_y = (player->y_pos - y_map) * ray->side_dist_y;
+    }
 }
 
 void    raycasting(t_player *player)

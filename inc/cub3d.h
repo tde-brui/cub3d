@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/08 17:36:42 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:07:43 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,6 @@ typedef struct player
 {
 	double	x_pos;
 	double	y_pos;
-
-	int		x_map;
-	int		y_map;
 	
 	double	x_dir;
 	double	y_dir;
@@ -51,6 +48,8 @@ typedef struct ray
 	double	side_dist_x;
 	double	side_dist_y;
 
+	int		stepx;
+	int		stepy;
 	
 }t_ray;
 

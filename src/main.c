@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/06 16:39:23 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/13 17:34:10 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	main(int argc, char **argv)
 	if (!player)
 		return (cleanup(NULL, mlx, 1));
 	raycasting(player);
-	mlx_loop_hook(mlx, ft_hooks, player);
-	mlx_loop(mlx);
+	// mlx_loop_hook(mlx, ft_hooks, player);
+	// mlx_loop(mlx);
 	return (cleanup(player, mlx, 0));
 }
   
