@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/12 14:22:39 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/14 13:37:57 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
-  t_map   *map;
+  	t_map   *map;
 	t_player	*player;
 
 	if (create_window(&mlx))
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	player = player_init(mlx, map);
 	if (!player)
 		return (cleanup(NULL, mlx, 1));
-	raycasting(player);
+	raycasting(player, map);
 	mlx_loop_hook(mlx, ft_hooks, player);
 	mlx_loop(mlx);
 	return (cleanup(player, mlx, 0));

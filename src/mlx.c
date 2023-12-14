@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
-/*   Updated: 2023/12/12 13:06:02 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/14 13:22:44 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	create_window(mlx_t **mlx)
 	return (0);
 }
 
-void	ft_hooks(void *param)
+void	ft_hooks(void *param, t_map *map)
 {
 	t_player	*player;
 	mlx_t		*mlx;
@@ -49,23 +49,23 @@ void	ft_hooks(void *param)
 		mlx_close_window(mlx);
 	if(mlx_is_key_down(mlx, MLX_KEY_W))
 	{
-		player->y_pos += 0.03;
-		raycasting(player);
+		player->pos.y += 0.03;
+		raycasting(player, map);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_S))
 	{
-		player->y_pos -= 0.03;
-		raycasting(player);
+		player->pos.y -= 0.03;
+		raycasting(player, map);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_D))
 	{
-		player->x_pos += 0.03;
-		raycasting(player);
+		player->pos.x += 0.03;
+		raycasting(player, map);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-		player->x_pos -= 0.03;
-		raycasting(player);
+		player->pos.x -= 0.03;
+		raycasting(player, map);
 	}
 	// printf("x_pos: %f, y_pos: %f\n", player->x_pos, player->y_pos);
 }

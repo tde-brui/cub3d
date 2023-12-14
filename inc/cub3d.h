@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/12 14:45:14 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/14 15:45:07 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,23 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <stdlib.h>
+# define FOV (M_PI / 3)
+
+typedef struct Vector2d
+{
+	double y;
+	double x;
+}t_Vector2d;
+
 
 typedef struct player
 {
-	double	x_pos;
-	double	y_pos;
-
+	t_Vector2d pos;
+	t_Vector2d dir;
+	t_Vector2d plane;
+	
 	int		x_map;
 	int		y_map;
-	
-	double	x_dir;
-	double	y_dir;
-
-	double	x_plane;
-	double	y_plane;
 
 	double	time;
 	double	oldtime;
@@ -44,27 +47,26 @@ typedef struct player
 
 typedef struct ray
 {
-	double	x_dir;
-	double	y_dir;
-
-	double	delta_dist_x;
-	double	delta_dist_y;
-
-	double	side_dist_x;
-	double	side_dist_y;
+	t_Vector2d dir;
+	t_Vector2d delta_dist;
+	t_Vector2d side_dist;
 
 	double 	step_x;
 	double 	step_y;
 
 	int		x_map;
 	int		y_map;
+
+	int		hit;
+	
+	double distance_to_wall;
 }t_ray;
 
 int			create_window(mlx_t **mlx);
 t_player	*player_init(mlx_t *mlx, t_map *map);
-void		ft_hooks(void *param);
+void		ft_hooks(void *param, t_map *map);
 int			cleanup(t_player *player, mlx_t *mlx, int errno);
-void		raycasting(t_player *player);
+void 		raycasting(t_player *player, t_map *map);
 void    	calculate_delta_dist(t_ray *ray);
 void    	calculate_step_side_dist(t_player *player, t_ray *ray);
 t_map	*parse_cub(char *cub);

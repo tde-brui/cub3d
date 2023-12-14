@@ -6,43 +6,91 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/06 16:40:12 by sschelti      #+#    #+#                 */
-/*   Updated: 2023/12/12 14:50:29 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/14 16:41:26 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-void    calculate_delta_dist(t_ray *ray)
+void init_ray(t_player *player, t_ray *ray, double cameraX)
 {
-    if (ray->x_dir == 0)
-        ray->x_dir = 1e30;
-    if (ray->y_dir == 0)
-        ray->y_dir = 1e30;
-    ray->delta_dist_x = sqrt(1 + pow(ray->y_dir/ray->x_dir, 2));
-    ray->delta_dist_y = sqrt(1 + pow(ray->x_dir/ray->y_dir, 2));
+    ray->dir.x = player->plane.x + player->dir.x * cameraX;
+    ray->dir.y = player->plane.y + player->dir.y * cameraX;
+    ray->delta_dist.x = fabs(1 / ray->dir.x);
+    ray->delta_dist.y = fabs(1 / ray->dir.y);
+	ray->hit = 0;
+    
 }
 
-void    calculate_step_side_dist(t_player *player, t_ray *ray)
+void determine_side_dist(t_player *player, t_ray *ray)
 {
-        player->x_map = (int)player->x_pos;
-        player->y_map = (int)player->y_pos;
+	if (ray->delta_dist.x < 0)
+	{
+		ray->step_x = -1;
+		ray->side_dist.x = (player->pos.x - player->x_map) * ray->delta_dist.x;
+	}
+	else
+	{
+		ray->step_x = 1;
+		ray->side_dist.x = ((player->x_map + 1) - player->pos.x) * ray->delta_dist.x;
+	}
+	if (ray->delta_dist.y < 0)
+	{
+		ray->step_y = -1;
+		ray->side_dist.y = (player->pos.y - player->y_map) * ray->delta_dist.y;
+    }
+	else
+	{
+		ray->step_y = 1;
+		ray->side_dist.y = ((player->y_map + 1) - player->pos.y) * ray->delta_dist.y;
+	}
+    
 }
 
-void    raycasting(t_player *player)
+void dda(t_player *player, t_ray *ray, t_map *map)
 {
-    t_ray ray;
+	printf("side dist x: %f\nside dist y: %f\n", ray->side_dist.x, ray->side_dist.y);
+	while (ray->hit == 0)
+	{
+		if (ray->side_dist.x < ray->side_dist.y)
+		{
+			ray->side_dist.x += ray->delta_dist.x;
+			printf("%f\n", ray->side_dist.x);
+			//printf("here\n");
+			player->x_map += ray->step_x;
+		}
+        else
+		{
+			ray->side_dist.y += ray->delta_dist.y;
+			printf("%f\n", ray->side_dist.x);
+			//printf("there\n");
+			player->y_map += ray->step_y;
+		}
+		printf("[%d][%d] = %d\n", player->y_map, player->x_map, map->map[player->y_map][player->x_map]);
+		if (map->map[player->y_map][player->x_map] != 0)
+			ray->hit = 1;
+	}
+	
+}
+
+void raycasting(t_player *player, t_map *map)
+{
+    int i;
     double cameraX;
-    double x;
 
-    cameraX = 0;
-    x = 0;
-    while (x < WIDTH)
+    i = 0;
+    while (i < WIDTH)
     {
-        cameraX = 2 * x / (double)WIDTH - 1;
-        ray.x_dir = player->x_dir + player->x_plane * cameraX;
-        ray.y_dir = player->y_dir + player->y_plane * cameraX;
-        calculate_delta_dist(&ray);
-        calculate_step_side_dist(player, &ray);
-        x++;
+        t_ray *ray;
+		printf("ray %d\n", i);
+        cameraX = 2 * i / (double)WIDTH - 1;
+        ray = ft_malloc(sizeof(t_ray));
+        init_ray(player, ray, cameraX);
+        determine_side_dist(player, ray);
+		dda(player, ray, map);
+		// ray->distance_to_wall = 
+		free(ray);
+		i++;
     }
 }
+
