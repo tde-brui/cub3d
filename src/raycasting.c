@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/13 17:34:04 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/14 20:20:34 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,22 @@ void    calculate_step_side_dist(t_player *player, t_ray *ray)
 
 void    raycasting(t_player *player)
 {
-    t_ray ray;
-    double cameraX;
-    double x;
+    // t_ray ray;
+    // double cameraX;
+    // int x;
 
-    cameraX = 0;
-    x = 0;
-    while (x < WIDTH)
-    {
-        cameraX = 2 * x / (double)WIDTH - 1;
-        ray.x_dir = player->x_dir + player->x_plane * cameraX;
-        ray.y_dir = player->y_dir + player->y_plane * cameraX;
-        calculate_delta_dist(&ray);
-        calculate_step_side_dist(player, &ray);
-        x++;
-    }
+    // cameraX = 0;
+    // x = 0;
+    // while (x < WIDTH)
+    // {
+        
+    //     cameraX = 2 * x / (double)WIDTH - 1;
+    //     ray.x_dir = player->x_dir + player->x_plane * cameraX;
+    //     ray.y_dir = player->y_dir + player->y_plane * cameraX;
+    //     calculate_delta_dist(&ray);
+    //     calculate_step_side_dist(player, &ray);
+    //     x++;
+    // }
+    draw_background(player);
+    draw_player(player);
 }

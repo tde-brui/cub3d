@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/06 16:58:58 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
+/*   Updated: 2023/12/14 20:05:58 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct Map
 {
 	t_textures	*textures;
 	int			**map;
-	int			width;
+	int			width; 
 	int			height;
 	int			start_pos_x;
 	int			start_pos_y;

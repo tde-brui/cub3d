@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   color.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/14 19:12:42 by stijn            ###   ########.fr       */
+/*   Created: 2023/12/14 17:20:51 by stijn             #+#    #+#             */
+/*   Updated: 2023/12/14 19:03:51 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdlib.h>
 
-t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
+uint32_t	get_colour(int r, int g, int b, int a )
 {
-	t_player	*player;
-
-	player = malloc(sizeof(t_player));
-	if (!player)
-		return (NULL);
-	player->x_pos = 5.0;
-	player->y_pos = 5.0;
-	player->x_dir = 0;
-	player->y_dir = 1;
-	player->x_plane = 0.66;
-	player->y_plane = 0;
-	player->time = 0;
-	player->oldtime = 0;
-	player->mlx = mlx;
-	player->image = image;
-	player->map = map;
-	return (player);
+	return (r << 24 | g << 16 | b << 8 | a);
 }
