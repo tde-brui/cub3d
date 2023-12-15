@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/14 19:56:24 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/15 18:13:42 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # define WIDTH 512
 # define HEIGHT 512
+# define PI 3.141592653
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../inc/parse.h"
 # include "../libs/libft/libft.h"
@@ -36,9 +37,15 @@ typedef struct player
 	double		time;
 	double		oldtime;
 
+	double		delta_x;
+	double		delta_y;
+
+	double		angle;
+
 	t_map		*map;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+	
 }t_player;
 
 typedef struct ray
@@ -68,5 +75,7 @@ t_map		*parse_cub(char *cub);
 uint32_t	get_colour(int r, int g, int b, int a);
 void    	draw_player(t_player *player);
 void		draw_background(t_player *player);
+void    	rotate_player(double delta_angle, t_player *player);
+void    	move_player(double sign, t_player *player);
 
 #endif

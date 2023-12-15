@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/14 20:23:06 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/15 14:34:46 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	if (create_window(&mlx, &image))
 		return (mlx_errno);
   	map = parse_cub(argv[1]);
+	print_map(map);
 	player = player_init(mlx, image, map);
 	if (!player)
 		return (cleanup(NULL, mlx, 1));

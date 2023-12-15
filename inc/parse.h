@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/14 20:05:58 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/15 14:35:19 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int		get_height(char *file);
 int		get_max_width(char *file);
 void	map_init(t_map **map, char *cub);
 void	parse_map(char *line, t_map *map, int i, char *cub);
+void	print_map(t_map *map);
 
 #endif

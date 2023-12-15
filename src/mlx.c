@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/14 19:47:43 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/15 18:14:01 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,22 @@ void	ft_hooks(void *param)
 		mlx_close_window(mlx);
 	if(mlx_is_key_down(mlx, MLX_KEY_W))
 	{
-		player->y_pos -= 0.03;
+		move_player(1.0, player);
 		raycasting(player);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_S))
 	{
-		player->y_pos += 0.03;
+		move_player(-1.0, player);
 		raycasting(player);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_D))
 	{
-		player->x_pos += 0.03;
+		rotate_player(0.1, player);
 		raycasting(player);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-		player->x_pos -= 0.03;
+		rotate_player(-0.1, player);
 		raycasting(player);
 	}
 	// printf("x_pos: %f, y_pos: %f\n", player->x_pos, player->y_pos);
