@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/06 16:40:12 by sschelti      #+#    #+#                 */
-/*   Updated: 2023/12/15 18:03:29 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/15 18:19:51 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,14 @@
 
 void	init_ray(t_player *player, t_ray *ray, double cameraX)
 {
-	ray->dir.y = player->dir.y + player->plane.y * cameraX;
 	ray->dir.x = player->dir.x + player->plane.x * cameraX;
-	if (ray->dir.y == 0)
-		ray->dir.y = 1e30;
+	ray->dir.y = player->dir.y + player->plane.y * cameraX;
 	if (ray->dir.x == 0)
 		ray->dir.x = 1e30;
+	if (ray->dir.y == 0)
+		ray->dir.y = 1e30;
 	ray->delta_dist.x = fabs(1 / ray->dir.x);
 	ray->delta_dist.y = fabs(1 / ray->dir.y);
-	printf("delta dist x: %f\ndelta dist y: %f\n", ray->delta_dist.x, ray->delta_dist.y);
 	ray->hit = 0;
 }
 
@@ -64,14 +63,12 @@ void	dda(t_player *player, t_ray *ray, t_map *map)
 		else
 		{
 			ray->side_dist.y += ray->delta_dist.y;
-			printf("%f\n", ray->side_dist.x);
+			printf("%f\n", ray->side_dist.y);
 			player->y_map += ray->step_y;
 		}
-		printf("[%d][%d] = %d\n", player->y_map, player->x_map, map->map[player->y_map][player->x_map]);
-		if (map->map[player->y_map][player->x_map] != 0)
+		if (map->map[player->y_map][player->x_map] != '0')
 		{
 			ray->hit = 1;
-			printf("hit\n");
 		}
 	}
 }
