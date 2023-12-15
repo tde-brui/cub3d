@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/14 15:45:07 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2023/12/15 15:40:12 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ typedef struct Vector2d
 
 typedef struct player
 {
-	t_Vector2d pos;
-	t_Vector2d dir;
-	t_Vector2d plane;
-	
+	t_Vector2d	pos;
+	t_Vector2d	dir;
+	t_Vector2d	plane;
+
 	int		x_map;
 	int		y_map;
 
