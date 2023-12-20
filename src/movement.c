@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:32:17 by stijn             #+#    #+#             */
-/*   Updated: 2023/12/15 18:13:34 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/20 17:44:06 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
+//rotates player using a angle between 0 and 2 * PI.
+//to do: rotate camera plane and direction vector with same angle using rotation matrix
 void    rotate_player(double delta_angle, t_player *player)
 {
     player->angle += delta_angle;

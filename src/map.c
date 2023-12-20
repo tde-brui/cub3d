@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   map.c                                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/07 13:07:59 by tijmendebru   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   map.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
+/*   Updated: 2023/12/20 18:10:40 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,25 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	{
 		map->map[i][j] = 0;
 		j++;
+	}
+}
+
+void	print_map(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			printf("%d ", map->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
 	}
 }

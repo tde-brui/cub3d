@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/15 14:34:46 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/20 18:10:50 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,4 @@ int	main(int argc, char **argv)
 	mlx_loop(mlx);
 	return (cleanup(player, mlx, 0));
 }
-  
-void	print_map(t_map *map)
-{
-	int i;
-	int j;
 
-	i = 0;
-	j = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			printf("%d ", map->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
