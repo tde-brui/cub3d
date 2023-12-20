@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/15 15:40:12 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/20 18:12:46 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,18 @@ typedef struct ray
 	int		y_map;
 
 	int		hit;
+
+	double	top_pixel;
+	double	bottom_pixel;
 	
 	double distance_to_wall;
 }t_ray;
 
-int			create_window(mlx_t **mlx);
+mlx_image_t	*create_window(mlx_t **mlx);
 t_player	*player_init(mlx_t *mlx, t_map *map);
 void		ft_hooks(void *param, t_map *map);
 int			cleanup(t_player *player, mlx_t *mlx, int errno);
-void 		raycasting(t_player *player, t_map *map);
+void 		raycasting(t_player *player, t_map *map, mlx_image_t *image);
 void    	calculate_delta_dist(t_ray *ray);
 void    	calculate_step_side_dist(t_player *player, t_ray *ray);
 t_map	*parse_cub(char *cub);

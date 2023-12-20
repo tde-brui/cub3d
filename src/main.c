@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/15 16:49:56 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/20 18:10:34 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ int	main(int argc, char **argv)
 	mlx_t		*mlx;
 	t_map		*map;
 	t_player	*player;
+	mlx_image_t	*image;
 
-	if (create_window(&mlx))
+	image = create_window(&mlx);
+	if (!image)
 		return (mlx_errno);
 	map = parse_cub(argv[1]);
-	printf("Start position row %d column %d\n", map->start_pos_y, map->start_pos_x);
 	player = player_init(mlx, map);
 	if (!player)
 		return (cleanup(NULL, mlx, 1));
-	raycasting(player, map);
+	raycasting(player, map, image);
 	mlx_loop_hook(mlx, ft_hooks, player);
 	mlx_loop(mlx);
 	return (cleanup(player, mlx, 0));
