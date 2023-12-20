@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/20 18:17:43 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:16:27 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void    raycasting(t_player *player)
         ray.y_dir = player->y_dir + player->y_plane * cameraX;
         calculate_delta_dist(&ray);
         calculate_step_side_dist(player, &ray);
+        //dda algorithm when hit return
+        //calculate distance from camera pov
         x++;
     }
     draw_background(player);

@@ -3,12 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:42:57 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/13 17:43:05 by sschelti         ###   ########.fr       */
+/*   Updated: 2023/12/20 19:18:02 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../inc/cub3d.h"
 
+void    dda(t_player *player, t_ray *ray)
+{
+    int hit = 0;
+
+    while (!hit)
+    {
+        if (ray->)
+    }
+}

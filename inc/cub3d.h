@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/15 18:13:42 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/20 18:54:13 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,9 @@ void    	draw_player(t_player *player);
 void		draw_background(t_player *player);
 void    	rotate_player(double delta_angle, t_player *player);
 void    	move_player(double sign, t_player *player);
+
+/*
+
+*/
 
 #endif
