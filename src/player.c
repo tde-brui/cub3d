@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/21 15:13:33 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/21 17:35:53 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
 	player->y_plane = 0;
 	player->time = 0;
 	player->oldtime = 0;
-	player->angle = 0;
 	player->mlx = mlx;
 	player->image = image;
 	player->map = map;

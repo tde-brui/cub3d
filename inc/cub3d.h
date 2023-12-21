@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/21 17:34:23 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/21 17:36:43 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define WIDTH 512
 # define HEIGHT 512
-# define PI 3.141592653
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../inc/parse.h"
 # include "../libs/libft/libft.h"
@@ -36,8 +35,6 @@ typedef struct player
 
 	double		time;
 	double		oldtime;
-
-	double		angle;
 
 	t_map		*map;
 	mlx_t		*mlx;
