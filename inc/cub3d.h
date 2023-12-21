@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/20 18:54:13 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/21 14:56:49 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,6 @@ typedef struct player
 	double		time;
 	double		oldtime;
 
-	double		delta_x;
-	double		delta_y;
-
 	double		angle;
 
 	t_map		*map;
@@ -62,6 +59,10 @@ typedef struct ray
 	int		stepx;
 	int		stepy;
 	
+	int		x_map;
+	int		y_map;
+
+	int		side;
 }t_ray;
 
 int			create_window(mlx_t **mlx, mlx_image_t **image);
@@ -77,9 +78,9 @@ void    	draw_player(t_player *player);
 void		draw_background(t_player *player);
 void    	rotate_player(double delta_angle, t_player *player);
 void    	move_player(double sign, t_player *player);
-
-/*
-
-*/
+void 		map_coordinate_to_pixel(t_player *player, double x_cor, double y_cor, uint32_t colour);
+void 		draw_vector(t_player *player, t_ray *ray);
+void 		create_square(int x, int y, t_player *player, int size, int colour);
+void		dda(t_player *player, t_ray *ray);
 
 #endif
