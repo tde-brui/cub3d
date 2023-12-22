@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topdown.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 19:06:15 by stijn             #+#    #+#             */
-/*   Updated: 2023/12/21 15:20:44 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/22 13:55:43 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void create_square(int x, int y, t_player *player, int size, int colour)
             mlx_put_pixel(player->image, j, i, colour);
 }
 
-void    draw_background(t_player *player)
+void    draw_background_topdown(t_player *player)
 {
     int **map = player->map->map;
     
@@ -35,19 +35,14 @@ void    draw_background(t_player *player)
     }
 }
 
-void    draw_player(t_player *player)
+void    draw_player_topdown(t_player *player)
 {
     map_coordinate_to_pixel(player, player->x_pos, player->y_pos, get_colour(255, 0, 0, 255));
 }
 
 void draw_vector(t_player *player, t_ray *ray)
 {
-    double length;
-
-    if (ray->side == 0)
-        length = ray->side_dist_x - ray->delta_dist_x;
-    else
-        length = ray->side_dist_y - ray->delta_dist_y;
+    double length = ray->player_distance;
     
     for (double i = 0; i <= length; i += 0.01)
     {

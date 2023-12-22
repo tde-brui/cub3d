@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/21 17:22:16 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/22 15:13:49 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,19 +63,21 @@ void    raycasting(t_player *player)
 
     cameraX = 0;
     x = 0;
-    draw_background(player);
-    draw_player(player);
+    // draw_background_topdown(player);
+    // draw_player_topdown(player);
     while (x < WIDTH)
     {
         cameraX = 2 * x / (double)WIDTH - 1;
         ray.x_dir = player->x_dir + player->x_plane * cameraX;
         ray.y_dir = player->y_dir + player->y_plane * cameraX;
-        printf("rayxdir: %f, rayydir: %f\n", ray.x_dir, ray.y_dir);
         calculate_delta_dist(&ray);
         calculate_step_side_dist(player, &ray);
         dda(player, &ray);
-        draw_vector(player, &ray);
-        // calculate distance from camera pov
+        calculate_player_distance(&ray);
+        // draw_vector(player, &ray);
+        draw_wall(player, &ray, x);
+        // calculate distance from camera plane
+        // draw x amount of pixels depending on the distance to the camera plane
         x++;
     }
 }

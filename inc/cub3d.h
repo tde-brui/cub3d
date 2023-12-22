@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/21 17:36:43 by stijn            ###   ########.fr       */
+/*   Updated: 2023/12/22 15:13:20 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ typedef struct ray
 	
 	int		x_map;
 	int		y_map;
+	
+	double	player_distance;
+	double	camera_distance;
 
 	int		side;
 }t_ray;
@@ -71,13 +74,16 @@ void    	calculate_delta_dist(t_ray *ray);
 void    	calculate_step_side_dist(t_player *player, t_ray *ray);
 t_map		*parse_cub(char *cub);
 uint32_t	get_colour(int r, int g, int b, int a);
-void    	draw_player(t_player *player);
-void		draw_background(t_player *player);
+void    	draw_player_topdown(t_player *player);
+void		draw_background_topdown(t_player *player);
 void    	rotate_player(double delta_angle, t_player *player);
 void    	move_player(double sign, t_player *player);
 void 		map_coordinate_to_pixel(t_player *player, double x_cor, double y_cor, uint32_t colour);
 void 		draw_vector(t_player *player, t_ray *ray);
 void 		create_square(int x, int y, t_player *player, int size, int colour);
 void		dda(t_player *player, t_ray *ray);
+void    	calculate_player_distance(t_ray *ray);
+void    	calculate_camera_distance(t_player *player, t_ray *ray);
+void    	draw_wall(t_player *player, t_ray *ray, int x);
 
 #endif
