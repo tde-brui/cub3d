@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 17:05:49 by sschelti      #+#    #+#                 */
-/*   Updated: 2023/12/15 17:31:48 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/21 16:18:02 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,26 @@ void	determine_player_dir(t_player *player, t_map *map)
 	}
 }
 
+void set_plane(t_map *map, t_player *player)
+{
+	if (map->start_dir == 'N' || map->start_dir == 'S')
+	{
+		player->plane.x = 0;
+		if (map->start_dir == 'N')
+			player->plane.y = -1;
+		else
+			player->plane.y = 1;
+	}
+	else if (map->start_dir == 'E' || map->start_dir == 'W')
+	{
+		player->plane.y = 0;
+		if (map->start_dir == 'E')
+			player->plane.x = 1;
+		else
+			player->plane.x = -1;
+	}
+}
+
 t_player	*player_init(mlx_t *mlx, t_map *map)
 {
 	t_player	*player;
@@ -47,8 +67,7 @@ t_player	*player_init(mlx_t *mlx, t_map *map)
 	player->pos.x = map->start_pos_x;
 	player->pos.y = map->start_pos_y;
 	determine_player_dir(player, map);
-	player->plane.x = 0;
-	player->plane.y = 0.66;
+	set_plane(map, player);
 	player->x_map = (int)player->pos.x;
 	player->y_map = (int)player->pos.y;
 	player->time = 0;

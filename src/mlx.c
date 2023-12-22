@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
-/*   Updated: 2023/12/20 18:12:24 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/21 16:47:25 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ mlx_image_t *create_window(mlx_t **mlx)
 		printf("%s\n", mlx_strerror(mlx_errno));
 		exit (1);
 	}
-	image = mlx_new_image(*mlx, 128, 128);
+	image = mlx_new_image(*mlx, WIDTH, HEIGHT);
 	if (!image)
 	{
 		mlx_close_window(*mlx);

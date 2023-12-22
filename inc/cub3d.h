@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/20 18:12:46 by tde-brui      ########   odam.nl         */
+/*   Updated: 2023/12/21 18:22:07 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct ray
 	int		y_map;
 
 	int		hit;
+	int		side;
 
 	double	top_pixel;
 	double	bottom_pixel;
