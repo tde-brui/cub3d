@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/22 15:13:20 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:52:54 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void		dda(t_player *player, t_ray *ray);
 void    	calculate_player_distance(t_ray *ray);
 void    	calculate_camera_distance(t_player *player, t_ray *ray);
 void    	draw_wall(t_player *player, t_ray *ray, int x);
+void		draw_background(t_player *player);
 
 #endif
