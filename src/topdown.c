@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   topdown.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 19:06:15 by stijn             #+#    #+#             */
-/*   Updated: 2023/12/22 13:55:43 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:12:10 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ void    draw_background_topdown(t_player *player)
     }
 }
 
-void    draw_player_topdown(t_player *player)
-{
-    map_coordinate_to_pixel(player, player->x_pos, player->y_pos, get_colour(255, 0, 0, 255));
-}
-
-void draw_vector(t_player *player, t_ray *ray)
+void draw_vector_topdown(t_player *player, t_ray *ray)
 {
     double length = ray->player_distance;
     

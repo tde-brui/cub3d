@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/22 15:44:34 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:18:00 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void    raycasting(t_player *player)
 
     cameraX = 0;
     x = 0;
-    // draw_background_topdown(player);
-    // draw_player_topdown(player);
     draw_background(player);
     while (x < WIDTH)
     {
@@ -75,7 +73,6 @@ void    raycasting(t_player *player)
         calculate_step_side_dist(player, &ray);
         dda(player, &ray);
         calculate_player_distance(&ray);
-        // draw_vector(player, &ray);
         draw_wall(player, &ray, x);
         // calculate distance from camera plane
         // draw x amount of pixels depending on the distance to the camera plane

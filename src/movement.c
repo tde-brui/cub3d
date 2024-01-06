@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:32:17 by stijn             #+#    #+#             */
-/*   Updated: 2023/12/21 17:35:42 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/05 13:14:34 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,16 @@ void    rotate_player(double delta_angle, t_player *player)
 
 void    move_player(double sign, t_player *player)
 {
-    player->x_pos += player->x_dir * 0.02 * sign;
-    player->y_pos += player->y_dir * 0.02 * sign;
+    int tempx;
+    int tempy;
+    
+    tempx = player->x_pos + player->x_dir * 0.02 * sign;
+    tempy = player->y_pos + player->y_dir * 0.02 * sign;
+    printf("tempx: %d, tempy: %d\n", tempx, tempy);
+    printf("xpos: %f, ypos: %f\n", player->x_pos, player->y_pos);
+    if (!player->map->map[tempy][tempx])
+    {
+        player->x_pos += player->x_dir * 0.02 * sign;
+        player->y_pos += player->y_dir * 0.02 * sign;
+    }
 }
