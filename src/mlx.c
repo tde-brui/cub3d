@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/06 16:38:52 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/05 12:08:53 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-int	create_window(mlx_t **mlx)
+int	create_window(mlx_t **mlx, mlx_image_t **image)
 {
-	mlx_image_t	*image;
-
 	*mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 0);
 	if (!(*mlx))
 	{
 		printf("%s\n", mlx_strerror(mlx_errno));
 		exit (1);
 	}
-	image = mlx_new_image(*mlx, 128, 128);
-	if (!image)
+	*image = mlx_new_image(*mlx, 512, 512);
+	if (!(*image))
 	{
 		mlx_close_window(*mlx);
 		printf("%s\n", mlx_strerror(mlx_errno));
 		return (cleanup(NULL, *mlx, mlx_errno));
 	}
-	if (mlx_image_to_window(*mlx, image, 0, 0) == -1)
+	if (mlx_image_to_window(*mlx, *image, 0, 0) == -1)
 	{
 		mlx_close_window(*mlx);
 		printf("%s\n", mlx_strerror(mlx_errno));
@@ -52,22 +50,22 @@ void	ft_hooks(void *param)
 		mlx_close_window(mlx);
 	if(mlx_is_key_down(mlx, MLX_KEY_W))
 	{
-		player->y_pos += 0.03;
+		move_player(1.0, player);
 		raycasting(player);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_S))
 	{
-		player->y_pos -= 0.03;
+		move_player(-1.0, player);
 		raycasting(player);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_D))
 	{
-		player->x_pos += 0.03;
+		rotate_player(-0.02, player);
 		raycasting(player);
 	}
 	if(mlx_is_key_down(mlx, MLX_KEY_A))
 	{
-		player->x_pos -= 0.03;
+		rotate_player(0.02, player);
 		raycasting(player);
 	}
 	// printf("x_pos: %f, y_pos: %f\n", player->x_pos, player->y_pos);
