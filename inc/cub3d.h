@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   cub3d.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: stijn <stijn@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/01/10 12:32:12 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/01/11 16:47:54 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct player
 	t_map		*map;
 	mlx_t		*mlx;
 	mlx_image_t	*image;
+
+	u_int32_t	screen_buffer[HEIGHT][WIDTH];
 	
 }t_player;
 
@@ -62,6 +64,8 @@ typedef struct ray
 	double	player_distance;
 	double	camera_distance;
 
+	int		wall_height;
+
 	int		side;
 }t_ray;
 
@@ -78,13 +82,8 @@ void    	rotate_player(double delta_angle, t_player *player);
 void    	move_player(double sign, t_player *player);
 void		dda(t_player *player, t_ray *ray);
 void    	calculate_player_distance(t_ray *ray);
-void    	calculate_camera_distance(t_player *player, t_ray *ray);
 void    	draw_wall(t_player *player, t_ray *ray, int x);
 void		draw_background(t_player *player);
-
-void 		draw_vector_topdown(t_player *player, t_ray *ray);
-void 		create_square(int x, int y, t_player *player, int size, int colour);
-void 		map_coordinate_to_pixel(t_player *player, double x_cor, double y_cor, uint32_t colour);
-void		draw_background_topdown(t_player *player);
+void		calculate_wall_height(t_ray *ray);
 
 #endif

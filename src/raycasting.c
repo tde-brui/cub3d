@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/05 12:18:00 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/11 15:43:58 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void    raycasting(t_player *player)
         dda(player, &ray);
         calculate_player_distance(&ray);
         draw_wall(player, &ray, x);
-        // calculate distance from camera plane
-        // draw x amount of pixels depending on the distance to the camera plane
+        
         x++;
     }
 }

@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/15 14:35:19 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/11 16:47:31 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ typedef struct rgb
 
 typedef struct Textures
 {
-	char	*north;
-	char	*east;
-	char	*south;
-	char	*west;
+	void	*north;
+	void	*east;
+	void	*south;
+	void	*west;
 	t_rgb	*floor;
 	t_rgb	*ceiling;
 }t_textures;
