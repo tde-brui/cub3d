@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   movement.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/15 17:32:17 by stijn             #+#    #+#             */
-/*   Updated: 2024/01/05 13:14:34 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   movement.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/15 17:32:17 by stijn         #+#    #+#                 */
+/*   Updated: 2024/01/12 17:03:41 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void    move_player(double sign, t_player *player)
     int tempx;
     int tempy;
     
+    printf("%f sign\n", sign);
+    printf("player->x_dir: %f, player->y_dir: %f\n", player->x_dir, player->y_dir);
     tempx = player->x_pos + player->x_dir * 0.02 * sign;
     tempy = player->y_pos + player->y_dir * 0.02 * sign;
     printf("tempx: %d, tempy: %d\n", tempx, tempy);
@@ -42,5 +44,21 @@ void    move_player(double sign, t_player *player)
     {
         player->x_pos += player->x_dir * 0.02 * sign;
         player->y_pos += player->y_dir * 0.02 * sign;
+    }
+}
+
+void    strafe(double sign, t_player *player)
+{
+    int tempx;
+    int tempy;
+
+    tempx = player->x_pos + player->x_plane * 0.03 * sign;
+    tempy = player->y_pos + player->y_plane * 0.03 * sign;
+    printf("tempx: %d, tempy: %d\n", tempx, tempy);
+    printf("xpos: %f, ypos: %f\n", player->x_pos, player->y_pos);
+    if (!player->map->map[tempy][tempx])
+    {
+        player->x_pos += player->x_plane * 0.03 * sign;
+        player->y_pos += player->y_plane * 0.03 * sign;
     }
 }

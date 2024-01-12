@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/20 18:10:40 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/01/12 16:56:04 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 		{
 			map->start_pos_x = j;
 			map->start_pos_y = i;
-			map->map[i][j] = 50;
+			map->map[i][j] = 0;
 		}
 		else if (line[j] == '1' || line[j] == '0')
 			map->map[i][j] = line[j] - 48;
