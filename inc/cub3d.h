@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/11 16:47:54 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/12 15:32:05 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # define WIDTH 512
 # define HEIGHT 512
+# define TEXWIDTH 256
+# define TEXHEIGHT 256
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../inc/parse.h"
 # include "../libs/libft/libft.h"

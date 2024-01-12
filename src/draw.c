@@ -15,7 +15,6 @@ void    calculate_wall_height(t_ray *ray)
 void    draw_wall(t_player *player, t_ray *ray, int x)
 {
     calculate_wall_height(ray);
-    printf("south texture: ", player->map->textures->south);
 }
 
 void    draw_background(t_player *player)

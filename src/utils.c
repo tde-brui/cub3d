@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/11 15:04:30 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/12 16:33:37 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
+#include "../inc/cub3d.h"
 
 void	*ft_malloc(size_t size)
 {
@@ -78,4 +79,15 @@ int	get_max_width(char *file)
 uint32_t	get_colour(int r, int g, int b, int a )
 {
 	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+void	trim_newline(char **untrimmed)
+{
+	char			*trimmed;
+	unsigned int	len_trimmed;
+
+	len_trimmed = ft_strlen(*untrimmed) - 1;
+	trimmed = ft_substr(*untrimmed, 0, len_trimmed);
+	free (*untrimmed);
+	*untrimmed = trimmed;
 }

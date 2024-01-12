@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/11 16:47:31 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/12 17:18:56 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,17 @@
 
 # include <stdlib.h>
 # include "../libs/libft/libft.h"
+# include "../libs/mlx/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
+
+enum DIRECTION
+{
+	NORTH,
+	SOUTH,
+	WEST,
+	EAST	
+};
 
 typedef struct rgb
 {
@@ -25,14 +34,20 @@ typedef struct rgb
 	int	b;
 }t_rgb;
 
+typedef struct Texture
+{
+	enum DIRECTION	direction;
+	char 			*path;
+	mlx_texture_t	texture;
+	t_texture		*next;
+}t_texture;
+
+
 typedef struct Textures
 {
-	void	*north;
-	void	*east;
-	void	*south;
-	void	*west;
-	t_rgb	*floor;
-	t_rgb	*ceiling;
+	t_texture	*textures;
+	t_rgb		*floor;
+	t_rgb		*ceiling;
 }t_textures;
 
 typedef struct Map
@@ -53,5 +68,7 @@ int		get_max_width(char *file);
 void	map_init(t_map **map, char *cub);
 void	parse_map(char *line, t_map *map, int i, char *cub);
 void	print_map(t_map *map);
+void	convert_textures(t_map* map);
+void	trim_newline(char **untrimmed);
 
 #endif
