@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/15 14:37:26 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:08:20 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,11 @@ void    convert_textures(t_texture *textures)
     int i;
 
     i = 0;
-    while (i != NUM_OF_TEXTURES)
+    while (i != NUM_OF_TEXTURES - 2)
     {
         trim_newline(&(textures[i].path));
+        textures[i].texture_mlx = mlx_load_png(textures[i].path);
+        //fail check
         i++;
     }
 }

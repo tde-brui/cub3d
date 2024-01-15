@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 14:23:09 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:06:11 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	init_textures(t_map *map)
 		map->textures[i].direction = i;
 		map->textures[i].path = NULL;
 		map->textures[i].texture_mlx = NULL;
-		map->textures[i].color = ft_malloc(sizeof(t_rgb));
-		init_rgb(map->textures[i].color);
+		map->textures[i].colour = ft_malloc(sizeof(t_rgb));
+		init_rgb(map->textures[i].colour);
 		i++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 14:43:34 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 15:55:53 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ enum DIRECTION
 
 typedef struct rgb
 {
-	int	r;
-	int	g;
-	int	b;
+	int			r;
+	int			g;
+	int			b;
+	uint32_t	colour;
 }t_rgb;
 
 
@@ -44,7 +45,7 @@ typedef struct Texture
 	enum DIRECTION	direction;
 	char 			*path;
 	mlx_texture_t	*texture_mlx;
-	t_rgb			*color;
+	t_rgb			*colour;
 }t_texture;
 
 //textures is an array for the 6 textures

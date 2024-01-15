@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 14:28:43 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:10:31 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	print_textures(t_texture *textures)
 {
 	for (int i = 0; i != 6; i++)
-		printf("texture%d: %s, %d\n", textures[i].direction, textures[i].path, textures[i].color->r);
+		printf("texture%d: %s, %d\n", textures[i].direction, textures[i].path, textures[i].colour->r);
 }
 
 int	main(int argc, char **argv)

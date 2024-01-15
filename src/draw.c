@@ -19,7 +19,15 @@ void    draw_wall(t_player *player, t_ray *ray, int x)
 
 void    draw_background(t_player *player)
 {
-    for (int x = 0; x != WIDTH; x++)
-        for (int y = 0; y != HEIGHT; y++)
-            mlx_put_pixel(player->image, x, y, 0);
+    uint32_t *ceiling_colour;
+    uint32_t *floor_colour;
+
+    ceiling_colour = &player->map->textures[CEILING].colour->colour;
+    floor_colour = &player->map->textures[FLOOR].colour->colour;
+    for (int y = 0; y != HEIGHT / 2; y++)
+        for (int x = 0; x != WIDTH; x++)
+            mlx_put_pixel(player->image, x, y, *ceiling_colour);
+    for (int y = HEIGHT / 2; y != HEIGHT; y++)
+        for (int x = 0; x != WIDTH; x++)
+            mlx_put_pixel(player->image, x, y, *floor_colour);
 }

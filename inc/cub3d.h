@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/12 15:32:05 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:09:32 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct player
 	mlx_t		*mlx;
 	mlx_image_t	*image;
 
-	u_int32_t	screen_buffer[HEIGHT][WIDTH];
+	uint32_t	screen_buffer[HEIGHT][WIDTH];
 	
 }t_player;
 
