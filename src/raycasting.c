@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/11 15:43:58 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/15 16:24:11 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void    raycasting(t_player *player)
         dda(player, &ray);
         calculate_player_distance(&ray);
         draw_wall(player, &ray, x);
-        
         x++;
     }
+    buffer_to_image(player);
 }

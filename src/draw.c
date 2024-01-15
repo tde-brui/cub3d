@@ -15,6 +15,7 @@ void    calculate_wall_height(t_ray *ray)
 void    draw_wall(t_player *player, t_ray *ray, int x)
 {
     calculate_wall_height(ray);
+    calculate_texture_x(ray, player);
 }
 
 void    draw_background(t_player *player)
@@ -26,8 +27,16 @@ void    draw_background(t_player *player)
     floor_colour = &player->map->textures[FLOOR].colour->colour;
     for (int y = 0; y != HEIGHT / 2; y++)
         for (int x = 0; x != WIDTH; x++)
-            mlx_put_pixel(player->image, x, y, *ceiling_colour);
+            player->screen_buffer[y][x] = *ceiling_colour;
+    // mlx_put_pixel(player->image, x, y, *ceiling_colour);
     for (int y = HEIGHT / 2; y != HEIGHT; y++)
         for (int x = 0; x != WIDTH; x++)
-            mlx_put_pixel(player->image, x, y, *floor_colour);
+            player->screen_buffer[y][x] = *floor_colour;
+}
+
+void    buffer_to_image(t_player *player)
+{
+    for (int x = 0; x != WIDTH; x++)
+        for (int y = 0; y != HEIGHT; y++)
+            mlx_put_pixel(player->image, x, y, player->screen_buffer[y][x]);
 }

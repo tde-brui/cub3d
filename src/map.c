@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 16:06:11 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:38:29 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	init_rgb(t_rgb *rgb)
 	rgb->r = 0;
 	rgb->g = 0;
 	rgb->b = 0;
+	rgb->colour = 0;
 }
 
 void	init_textures(t_map *map)

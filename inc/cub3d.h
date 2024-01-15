@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 16:09:32 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:57:18 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # define WIDTH 512
 # define HEIGHT 512
-# define TEXWIDTH 256
-# define TEXHEIGHT 256
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../inc/parse.h"
 # include "../libs/libft/libft.h"
@@ -64,11 +62,12 @@ typedef struct ray
 	int		y_map;
 	
 	double	player_distance;
-	double	camera_distance;
 
 	int		wall_height;
 
 	int		side;
+
+	int		texture_x;
 }t_ray;
 
 int			create_window(mlx_t **mlx, mlx_image_t **image);
@@ -87,5 +86,7 @@ void    	calculate_player_distance(t_ray *ray);
 void    	draw_wall(t_player *player, t_ray *ray, int x);
 void		draw_background(t_player *player);
 void		calculate_wall_height(t_ray *ray);
+void   		buffer_to_image(t_player *player);
+void    	calculate_texture_x(t_ray *ray, t_player *player);
 
 #endif

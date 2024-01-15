@@ -3,8 +3,8 @@ WE ./textures/west.png
 NO ./textures/north.png
 SO ./textures/south.png
 
-F 255,0,0
-C 0,0,255
+F 50,0,0
+C 0,0,50
 
 11111111
 10011001
