@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/05 12:08:53 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/01/10 13:17:18 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	ft_hooks(void *param)
 
 	player = param;
 	mlx = player->mlx;
+	//mlx_set_mouse_pos(mlx, WIDTH / 2, HEIGHT / 2);
+	//mlx_set_cursor_type(mlx, MLX_CURSOR_NONE); idk how to hide cursor with mlx yet
 	if(mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
 	if(mlx_is_key_down(mlx, MLX_KEY_W))
@@ -58,12 +60,22 @@ void	ft_hooks(void *param)
 		move_player(-1.0, player);
 		raycasting(player);
 	}
-	if(mlx_is_key_down(mlx, MLX_KEY_D))
+	if (mlx_is_key_down(mlx, MLX_KEY_A))
+	{
+		move_left_or_right(-1.0, player);
+		raycasting(player);
+	}
+	if (mlx_is_key_down(mlx, MLX_KEY_D))
+	{
+		move_left_or_right(1.0, player);
+		raycasting(player);
+	}
+	if(mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 	{
 		rotate_player(-0.02, player);
 		raycasting(player);
 	}
-	if(mlx_is_key_down(mlx, MLX_KEY_A))
+	if(mlx_is_key_down(mlx, MLX_KEY_LEFT))
 	{
 		rotate_player(0.02, player);
 		raycasting(player);
