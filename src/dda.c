@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/13 17:42:57 by sschelti          #+#    #+#             */
-/*   Updated: 2023/12/22 13:58:16 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 17:42:34 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,4 @@ void    calculate_player_distance(t_ray *ray)
         ray->player_distance = ray->side_dist_x - ray->delta_dist_x;
     else
         ray->player_distance = ray->side_dist_y - ray->delta_dist_y;
-}
-
-void    calculate_camera_distance(t_player *player, t_ray *ray)
-{
-    
 }

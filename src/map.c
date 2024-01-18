@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/20 18:10:40 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/15 16:38:29 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,23 @@ void	init_rgb(t_rgb *rgb)
 	rgb->r = 0;
 	rgb->g = 0;
 	rgb->b = 0;
+	rgb->colour = 0;
 }
 
-void	init_textures(t_textures *textures)
+void	init_textures(t_map *map)
 {
-	textures->north = NULL;
-	textures->east = NULL;
-	textures->south = NULL;
-	textures->west = NULL;
-	textures->floor = ft_malloc(sizeof(t_rgb));
-	textures->ceiling = ft_malloc(sizeof(t_rgb));
-	init_rgb(textures->floor);
-	init_rgb(textures->ceiling);
+	map->textures = ft_malloc(sizeof(t_texture) * 6);
+	int	i = 0;
+
+	while (i != 6)
+	{
+		map->textures[i].direction = i;
+		map->textures[i].path = NULL;
+		map->textures[i].texture_mlx = NULL;
+		map->textures[i].colour = ft_malloc(sizeof(t_rgb));
+		init_rgb(map->textures[i].colour);
+		i++;
+	}
 }
 
 void	map_init(t_map **map, char *cub)
@@ -38,8 +43,7 @@ void	map_init(t_map **map, char *cub)
 
 	i = 0;
 	*map = ft_malloc(sizeof(t_map));
-	(*map)->textures = ft_malloc(sizeof(t_textures));
-	init_textures((*map)->textures);
+	init_textures(*map);
 	(*map)->width = get_max_width(cub);
 	(*map)->height = get_height(cub);
 	printf("max width: %d\n", (*map)->width);

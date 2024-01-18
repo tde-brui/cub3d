@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/06 17:13:39 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/01/15 14:31:25 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
+#include "../inc/cub3d.h"
 
 void	*ft_malloc(size_t size)
 {
@@ -73,4 +74,9 @@ int	get_max_width(char *file)
 	}
 	close(fd);
 	return (width);
+}
+
+uint32_t	get_colour(int r, int g, int b, int a )
+{
+	return (r << 24 | g << 16 | b << 8 | a);
 }

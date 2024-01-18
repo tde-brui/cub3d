@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   movement.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: stijn <stijn@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/15 17:32:17 by stijn         #+#    #+#                 */
-/*   Updated: 2024/01/10 13:00:22 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/15 17:32:17 by stijn             #+#    #+#             */
+/*   Updated: 2024/01/18 16:53:26 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,12 @@ void    rotate_player(double delta_angle, t_player *player)
     double y_p = player->y_plane;
     double x_d = player->x_dir;
     double y_d = player->y_dir;
-        
-    // player->x_dir = cos(player->angle);
-    // player->y_dir = sin(player->angle);
+
     player->x_plane = x_p * cos(delta_angle) - y_p * sin(delta_angle);
     player->y_plane = x_p * sin(delta_angle) + y_p * cos(delta_angle);
     player->x_dir = x_d * cos(delta_angle) - y_d * sin(delta_angle);
     player->y_dir = x_d * sin(delta_angle) + y_d * cos(delta_angle);
+    raycasting(player);
 }
 
 void    move_player(double sign, t_player *player)
@@ -43,6 +42,24 @@ void    move_player(double sign, t_player *player)
         player->x_pos += player->x_dir * 0.02 * sign;
         player->y_pos += player->y_dir * 0.02 * sign;
     }
+    raycasting(player);
+}
+
+void strafe(double sign, t_player *player)
+{
+    int tempx;
+    int tempy;
+    
+    tempx = player->x_pos + player->x_plane * 0.03 * sign;
+    tempy = player->y_pos + player->y_plane * 0.03 * sign;
+    printf("tempx: %d, tempy: %d\n", tempx, tempy);
+    printf("xpos: %f, ypos: %f\n", player->x_pos, player->y_pos);
+    if (!player->map->map[tempy][tempx])
+    {
+        player->x_pos += player->x_plane * 0.03 * sign;
+        player->y_pos += player->y_plane * 0.03 * sign;
+    }
+    raycasting(player);
 }
 
 void    move_left_or_right(double sign, t_player *player)

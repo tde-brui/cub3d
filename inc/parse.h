@@ -6,38 +6,52 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2023/12/15 14:35:19 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/17 10:57:09 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSE_H
 # define PARSE_H
 
+# define NUM_OF_TEXTURES 6
+
 # include <stdlib.h>
 # include "../libs/libft/libft.h"
+# include "../libs/mlx/include/MLX42/MLX42.h"
 # include <fcntl.h>
 # include <stdio.h>
 
+enum DIRECTION
+{
+	NORTH,
+	EAST,
+	SOUTH,
+	WEST,
+	FLOOR,
+	CEILING
+};
+
 typedef struct rgb
 {
-	int	r;
-	int	g;
-	int	b;
+	int			r;
+	int			g;
+	int			b;
+	uint32_t	colour;
 }t_rgb;
 
-typedef struct Textures
-{
-	char	*north;
-	char	*east;
-	char	*south;
-	char	*west;
-	t_rgb	*floor;
-	t_rgb	*ceiling;
-}t_textures;
 
+typedef struct Texture
+{
+	enum DIRECTION	direction;
+	char 			*path;
+	mlx_texture_t	*texture_mlx;
+	t_rgb			*colour;
+}t_texture;
+
+//textures is an array for the 6 textures
 typedef struct Map
 {
-	t_textures	*textures;
+	t_texture	*textures;
 	int			**map;
 	int			width; 
 	int			height;
@@ -53,5 +67,7 @@ int		get_max_width(char *file);
 void	map_init(t_map **map, char *cub);
 void	parse_map(char *line, t_map *map, int i, char *cub);
 void	print_map(t_map *map);
+void	convert_textures(t_texture *textures);
+void	trim_newline(char **untrimmed);
 
 #endif

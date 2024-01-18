@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 13:45:52 by tde-brui      #+#    #+#                 */
-/*   Updated: 2023/12/06 16:39:37 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/01/15 16:38:53 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
+#include "../inc/cub3d.h"
 #include <stdio.h>
 
 void	free_split(char **ptr)
@@ -37,9 +38,10 @@ void	parse_rgb(char *line, t_rgb *rgb)
 	rgb->g = ft_atoi(split[1]);
 	rgb->b = ft_atoi(split[2]);
 	free_split(split);
+	rgb->colour = get_colour(rgb->r, rgb->g, rgb->b, 255);
 }
 
-void	parse_textures(char *line, t_textures *textures)
+void	parse_textures(char *line, t_texture *textures)
 {
 	char		**split;
 
@@ -47,20 +49,19 @@ void	parse_textures(char *line, t_textures *textures)
 	printf("split[0]: %s\n", split[0]);
 	printf("split[1]: %s\n", split[1]);
 	if (!ft_strncmp("NO", split[0], 2))
-		textures->north = ft_strdup(split[1]);
-	else if (ft_strncmp("EA", split[0], 2))
-		textures->east = ft_strdup(split[1]);
-	else if (ft_strncmp("SO", split[0], 2))
-		textures->south = ft_strdup(split[1]);
-	else if (ft_strncmp("WE", split[0], 2))
-		textures->west = ft_strdup(split[1]);
-	else if (ft_strncmp("F", split[0], 1))
-		parse_rgb(split[1], textures->floor);
-	else if (ft_strncmp("C", split[0], 1))
-		parse_rgb(split[1], textures->ceiling);
+		textures[NORTH].path = ft_strdup(split[1]);
+	else if (!ft_strncmp("EA", split[0], 2))
+		textures[EAST].path = ft_strdup(split[1]);
+	else if (!ft_strncmp("SO", split[0], 2))
+		textures[SOUTH].path = ft_strdup(split[1]);
+	else if (!ft_strncmp("WE", split[0], 2))
+		textures[WEST].path = ft_strdup(split[1]);
+	else if (!ft_strncmp("F", split[0], 1))
+		parse_rgb(split[1], textures[FLOOR].colour);
+	else if (!ft_strncmp("C", split[0], 1))
+		parse_rgb(split[1], textures[CEILING].colour);
 	free_split(split);
 }
-
 
 t_map	*parse_cub(char *cub)
 {
@@ -91,5 +92,6 @@ t_map	*parse_cub(char *cub)
 		free(line);
 	}
 	close(fd);
+	convert_textures(map->textures);
 	return (map);
 }
