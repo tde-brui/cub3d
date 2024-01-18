@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/18 16:54:01 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:07:20 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_hooks(void *param)
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 		strafe(1.0, player);
 	if(mlx_is_key_down(mlx, MLX_KEY_RIGHT))
-		rotate_player(-0.02, player);
-	if(mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		rotate_player(0.02, player);
+	if(mlx_is_key_down(mlx, MLX_KEY_LEFT))
+		rotate_player(-0.02, player);
 }
