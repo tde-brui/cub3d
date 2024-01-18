@@ -85,6 +85,7 @@ t_map		*parse_cub(char *cub);
 uint32_t	get_colour(int r, int g, int b, int a);
 void    	rotate_player(double delta_angle, t_player *player);
 void    	move_player(double sign, t_player *player);
+void		move_left_or_right(double sign, t_player *player);
 void		dda(t_player *player, t_ray *ray);
 void    	calculate_player_distance(t_ray *ray);
 void    	draw_wall(t_player *player, t_ray *ray, int x);

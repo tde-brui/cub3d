@@ -60,5 +60,4 @@ void	ft_hooks(void *param)
 		rotate_player(-0.02, player);
 	if(mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		rotate_player(0.02, player);
-	// printf("x_pos: %f, y_pos: %f\n", player->x_pos, player->y_pos);
 }
