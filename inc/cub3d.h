@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 17:57:18 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:19:45 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,15 @@ typedef struct ray
 	
 	double	player_distance;
 
-	int		wall_height;
-
 	int		side;
 
+	int		wall_height;
+	int		draw_start;
+	int		draw_end;
+	
+	int		direction;
 	int		texture_x;
+	t_texture	*texture;
 }t_ray;
 
 int			create_window(mlx_t **mlx, mlx_image_t **image);
@@ -87,6 +91,7 @@ void    	draw_wall(t_player *player, t_ray *ray, int x);
 void		draw_background(t_player *player);
 void		calculate_wall_height(t_ray *ray);
 void   		buffer_to_image(t_player *player);
-void    	calculate_texture_x(t_ray *ray, t_player *player);
+void    	calculate_texture_x(t_ray *ray, t_player *player, t_texture *texture);
+int			select_texture(t_ray *ray);
 
 #endif

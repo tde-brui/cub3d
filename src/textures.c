@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/15 18:13:11 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/17 12:19:32 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void    convert_textures(t_texture *textures)
     }
 }
 
-enum DIRECTION select_wall(t_ray *ray)
+int select_texture(t_ray *ray)
 {
     if (ray->side == 1)
     {
@@ -56,13 +56,12 @@ enum DIRECTION select_wall(t_ray *ray)
 }
 
 // if side == 1 NORTH or SOUTH is hit
-void    calculate_texture_x(t_ray *ray, t_player *player)
+void    calculate_texture_x(t_ray *ray, t_player *player, t_texture *texture)
 {
     double      wall_x;
-    t_texture   *texture;
 
     wall_x = 0.0;
-    texture = &player->map->textures[select_wall(ray)];
+    printf("ray direction: %d\n", ray->direction);
     if (ray->side == 1)
         wall_x = player->x_pos + ray->player_distance * ray->x_dir;
     else
@@ -70,5 +69,5 @@ void    calculate_texture_x(t_ray *ray, t_player *player)
     printf("wall_x: %f\n", wall_x);   
     wall_x -= floor(wall_x);
     ray->texture_x = (int)(wall_x * (double)texture->texture_mlx->width);
-    printf("x pixel texture: %d\n", ray->texture_x);        
+    printf("x pixel texture: %d\n", ray->texture_x);
 }
