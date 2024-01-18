@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/18 14:52:11 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/18 16:54:55 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,5 +93,6 @@ void		calculate_wall_height(t_ray *ray);
 void   		buffer_to_image(t_player *player);
 void    	calculate_texture_x(t_ray *ray, t_player *player);
 int			select_texture(t_ray *ray);
+void		strafe(double sign, t_player *player);
 
 #endif
