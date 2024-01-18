@@ -6,36 +6,13 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/15 14:23:55 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:06:55 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 #include <stdlib.h>
 
-// void	determine_player_dir(t_player *player, t_map *map)
-// {
-// 	if (map->start_dir == 'N')
-// 	{
-// 		player->x_dir = -1;
-// 		player->y_dir = 0;
-// 	}
-// 	else if (map->start_dir == 'S')
-// 	{
-// 		player->x_dir = 1;
-// 		player->y_dir = 0;
-// 	}
-// 	else if (map->start_dir == 'W')
-// 	{
-// 		player->x_dir = 0;
-// 		player->y_dir = -1;
-// 	}
-// 	else if (map->start_dir == 'E')
-// 	{
-// 		player->x_dir = 0;
-// 		player->y_dir = 1;
-// 	}
-// }
 t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
 {
 	t_player	*player;
@@ -43,8 +20,8 @@ t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
 	player = malloc(sizeof(t_player));
 	if (!player)
 		return (NULL);
-	player->x_pos = map->start_pos_x;
-	player->y_pos = map->start_pos_y;
+	player->x_pos = 5.0;
+	player->y_pos = 5.0;
 	player->x_dir = 0;
 	player->y_dir = -1;
 	player->x_plane = 0.66;

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/15 17:32:17 by stijn             #+#    #+#             */
-/*   Updated: 2024/01/18 16:53:26 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:06:07 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,4 @@ void strafe(double sign, t_player *player)
         player->y_pos += player->y_plane * 0.03 * sign;
     }
     raycasting(player);
-}
-
-void    move_left_or_right(double sign, t_player *player)
-{
-    int tempx;
-    int tempy;
-    
-    tempx = player->x_pos + player->x_plane * 0.03 * sign;
-    tempy = player->y_pos + player->y_plane * 0.03 * sign;
-    printf("tempx: %d, tempy: %d\n", tempx, tempy);
-    printf("xpos: %f, ypos: %f\n", player->x_pos, player->y_pos);
-    if (!player->map->map[tempy][tempx])
-    {
-        player->x_pos += player->x_plane * 0.03 * sign;
-        player->y_pos += player->y_plane * 0.03 * sign;
-    }
 }

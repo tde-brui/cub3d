@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/18 16:54:55 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:06:00 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ t_map		*parse_cub(char *cub);
 uint32_t	get_colour(int r, int g, int b, int a);
 void    	rotate_player(double delta_angle, t_player *player);
 void    	move_player(double sign, t_player *player);
-void		move_left_or_right(double sign, t_player *player);
 void		dda(t_player *player, t_ray *ray);
 void    	calculate_player_distance(t_ray *ray);
 void    	draw_wall(t_player *player, t_ray *ray, int x);
