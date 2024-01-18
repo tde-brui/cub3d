@@ -12,14 +12,16 @@ void    calculate_wall_height(t_ray *ray)
 
 static uint32_t    get_colour_pixels(int x, int y, t_texture *texture)
 {
-    uint32_t    ret;
-    int         bitshift = 24;
+    int         index;
+    uint8_t     *ptr;
+    uint32_t    ret = 0;
 
-    for (int i = 0; i != 4; i++)
-    {
-        ret = texture->texture_mlx->pixels[x * y + i] << bitshift;
-        bitshift -= 8;
-    }
+    index = (texture->texture_mlx->width * y + x) * sizeof(int);
+    ptr = &(texture->texture_mlx->pixels[index]);
+    ret += (uint32_t)*ptr++ << 24;
+    ret += (uint32_t)*ptr++ << 16;
+    ret += (uint32_t)*ptr++ << 8;
+    ret += (uint32_t)255;
     return (ret);
 }
 /*calculate the wall height. then determine the x value where the ray hit (0 - 1).
@@ -27,18 +29,19 @@ static uint32_t    get_colour_pixels(int x, int y, t_texture *texture)
 void    draw_wall(t_player *player, t_ray *ray, int x)
 {
     t_texture   *texture;
-    uint32_t    colour;    
 
     texture = &player->map->textures[select_texture(ray)];
-    calculate_texture_x(ray, player, texture);
+    calculate_texture_x(ray, player);
     calculate_wall_height(ray);
-    double step = (double)ray->wall_height/ (double)HEIGHT;
-    double texture_y = 0.0;
+    double step = 1.0 * texture->texture_mlx->height / ray->wall_height;
+    double texPos = (ray->draw_start - HEIGHT / 2 + ray->wall_height / 2) * step;
+    uint32_t colour = 0;
     for (int y = ray->draw_start; y != ray->draw_end; y++)
     {
-        colour = get_colour_pixels(ray->texture_x, (int)texture_y, texture);
-        texture_y += 1.0;
-        player->screen_buffer[x][y] = colour;
+        int texy = (int)texPos & (texture->texture_mlx->height - 1);
+        texPos += step;
+        colour = get_colour_pixels(ray->texture_x, texy, texture);
+        player->screen_buffer[y][x] = colour;
     }
 
 }

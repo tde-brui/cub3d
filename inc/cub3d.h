@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/17 12:19:45 by stijn            ###   ########.fr       */
+/*   Updated: 2024/01/18 14:52:11 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void    	draw_wall(t_player *player, t_ray *ray, int x);
 void		draw_background(t_player *player);
 void		calculate_wall_height(t_ray *ray);
 void   		buffer_to_image(t_player *player);
-void    	calculate_texture_x(t_ray *ray, t_player *player, t_texture *texture);
+void    	calculate_texture_x(t_ray *ray, t_player *player);
 int			select_texture(t_ray *ray);
 
 #endif
