@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 15:28:33 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 16:34:44 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/08 13:24:48 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	convert_textures(t_texture *textures)
             png_error();
         i++;
     }
+    textures[6].texture_mlx = mlx_load_png("./textures/creeper.png");
 }
 
 int	select_texture(t_ray *ray)
