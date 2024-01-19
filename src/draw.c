@@ -3,10 +3,12 @@
 void    calculate_wall_height(t_ray *ray)
 {
     int wall_height = (double)HEIGHT / ray->player_distance;
-    if (wall_height > 512)
-        wall_height = 512;
     ray->draw_start = HEIGHT / 2 - wall_height / 2;
+    if (ray->draw_start < 0)
+        ray->draw_start = 0;
     ray->draw_end = HEIGHT / 2 + wall_height / 2;
+    if (ray->draw_end > HEIGHT)
+        ray->draw_end = HEIGHT;
     ray->wall_height = wall_height;
 }
 
@@ -56,7 +58,6 @@ void    draw_background(t_player *player)
     for (int y = 0; y != HEIGHT / 2; y++)
         for (int x = 0; x != WIDTH; x++)
             player->screen_buffer[y][x] = *ceiling_colour;
-    // mlx_put_pixel(player->image, x, y, *ceiling_colour);
     for (int y = HEIGHT / 2; y != HEIGHT; y++)
         for (int x = 0; x != WIDTH; x++)
             player->screen_buffer[y][x] = *floor_colour;
