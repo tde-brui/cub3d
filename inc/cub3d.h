@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/18 17:06:00 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/01/19 15:20:06 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,6 @@ void   		buffer_to_image(t_player *player);
 void    	calculate_texture_x(t_ray *ray, t_player *player);
 int			select_texture(t_ray *ray);
 void		strafe(double sign, t_player *player);
+void    	png_error();
 
 #endif

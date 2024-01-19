@@ -1,11 +1,10 @@
-
 EA ./textures/east.png
 WE ./textures/west.png
 NO ./textures/north.png
 SO ./textures/south.png
 
 F 0,200,0
-C 0,0,200aw
+C 0,0,200
 
 111111111111111
 100110010000001
