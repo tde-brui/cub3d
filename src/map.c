@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 16:38:29 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/01/19 17:07:10 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	init_rgb(t_rgb *rgb)
 
 void	init_textures(t_map *map)
 {
-	map->textures = ft_malloc(sizeof(t_texture) * 6);
+	map->textures = ft_malloc(sizeof(t_texture) * 7);
 	int	i = 0;
 
-	while (i != 6)
+	while (i != 7)
 	{
 		map->textures[i].direction = i;
 		map->textures[i].path = NULL;

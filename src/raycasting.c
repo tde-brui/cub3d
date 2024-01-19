@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   raycasting.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/06 16:40:12 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/17 12:20:34 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   raycasting.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/06 16:40:12 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/01/19 17:20:43 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ void    raycasting(t_player *player)
         draw_wall(player, &ray, x);
         x++;
     }
+    mlx_image_t *creeper = mlx_texture_to_image(player->mlx, player->map->textures[6].texture_mlx);
+    mlx_image_to_window(player->mlx, creeper, 0, 0);
     buffer_to_image(player);
 }

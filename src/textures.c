@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/18 15:09:20 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   textures.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/12 15:28:33 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/01/19 17:17:36 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void    convert_textures(t_texture *textures)
         textures[i].texture_mlx = mlx_load_png(textures[i].path);
         i++;
     }
+    textures[6].texture_mlx = mlx_load_png("./textures/creeper.png");
 }
 
 int select_texture(t_ray *ray)
