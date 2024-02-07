@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 15:10:26 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/07 17:27:41 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ void	map_init(t_map **map, char *cub)
 
 int	determine_width(t_map *map, int i, char *line)
 {
-	if (map->height == i + 1)
-		return (ft_strlen(line));
 	return (ft_strlen(line) - 1);
 }
 
@@ -70,13 +68,8 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	int	width;
 
 	j = 0;
-	while (line[j] == ' ')
-	{
-		map->map[i][j] = 0;
-		j++;
-	}
+	printf("%s\n", line);
 	width = determine_width(map, i, line);
-	printf("width: %d\n", width);
 	while (j < width)
 	{
 		if (line[j] == 'N' || line[j] == 'E'
@@ -89,8 +82,10 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 		}
 		else if (line[j] == '1' || line[j] == '0')
 			map->map[i][j] = line[j] - 48;
-		else if (line[j] == ' ')
+		else if (ft_isspace(line[j]))
 			map->map[i][j] = 0;
+		else
+			exit_error("Error\nInvalid character in map\n");
 		j++;
 	}
 	while (j < map->width)

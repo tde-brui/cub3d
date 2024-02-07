@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 16:38:53 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 13:45:52 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/07 16:47:18 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,31 @@ void	parse_textures(char *line, t_texture *textures)
 	free_split(split);
 }
 
+int	check_if_texture_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
+		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')
+		return (1);
+	return (0);
+}
+
+int	check_if_map_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == '1' || line[i] == '0')
+		return (1);
+	return (0);
+}
+
 t_map	*parse_cub(char *cub)
 {
 	t_map		*map;
@@ -80,11 +105,9 @@ t_map	*parse_cub(char *cub)
 		if (!line)
 			break ;
 		j = 0;
-		while (line[j] == ' ')
-			j++;
-		if (line[j] != '1')
+		if (check_if_texture_line(line))
 			parse_textures(line, map->textures);
-		else if (line[j] == '1')
+		else if (check_if_map_line(line))
 		{
 			parse_map(line, map, height, cub);
 			height++;

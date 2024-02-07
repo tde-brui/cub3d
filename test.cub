@@ -1,6 +1,6 @@
 
 EA ./textures/east.png
-WE ./textures/minecraft.png
+WE ./textures/planks.png
 NO ./textures/north.png
 SO ./textures/south.png
 

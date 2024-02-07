@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/01/12 15:28:33 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 14:27:16 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/07 16:34:44 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	calculate_texture_x(t_ray *ray, t_player *player)
 	if (ray->side == 1)
 		wall_x = player->x_pos + ray->player_distance * ray->x_dir;
 	else
-		wall_x = player->y_pos + ray->player_distance * ray->y_dir;  
+		wall_x = player->y_pos + ray->player_distance * ray->y_dir;
 	wall_x -= floor(wall_x);
 	ray->texture_x = (int)(wall_x * (double)texture->texture_mlx->width);
 }
