@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 14:07:38 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/07 14:42:52 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,5 @@ void	ft_hooks(void *param)
 		rotate_player(0.02, player);
 	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		rotate_player(-0.02, player);
+	raycasting(player);
 }
