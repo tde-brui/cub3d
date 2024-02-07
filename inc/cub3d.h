@@ -6,15 +6,15 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 14:43:14 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/07 14:52:13 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 1024
-# define HEIGHT 1024
+# define WIDTH 512
+# define HEIGHT 512
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../inc/parse.h"
 # include "../libs/libft/libft.h"
