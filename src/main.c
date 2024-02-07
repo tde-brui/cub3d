@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 16:39:12 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/07 14:22:14 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	print_textures(t_texture *textures)
 int	main(int argc, char **argv)
 {
 	mlx_t		*mlx;
-  	t_map   	*map;
+	t_map		*map;
 	mlx_image_t	*image;
 	t_player	*player;
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (create_window(&mlx, &image))
 		return (mlx_errno);
-  	map = parse_cub(argv[1]);
+	map = parse_cub(argv[1]);
 	print_map(map);
 	print_textures(map->textures);
 	player = player_init(mlx, image, map);

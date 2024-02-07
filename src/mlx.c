@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   mlx.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/18 17:07:20 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   mlx.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/02/07 14:07:38 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	create_window(mlx_t **mlx, mlx_image_t **image)
 		printf("%s\n", mlx_strerror(mlx_errno));
 		exit (1);
 	}
-	*image = mlx_new_image(*mlx, 512, 512);
+	*image = mlx_new_image(*mlx, WIDTH, HEIGHT);
 	if (!(*image))
 	{
 		mlx_close_window(*mlx);
@@ -46,18 +46,18 @@ void	ft_hooks(void *param)
 
 	player = param;
 	mlx = player->mlx;
-	if(mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
+	if (mlx_is_key_down(mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(mlx);
-	if(mlx_is_key_down(mlx, MLX_KEY_W))
+	if (mlx_is_key_down(mlx, MLX_KEY_W))
 		move_player(1.0, player);
-	if(mlx_is_key_down(mlx, MLX_KEY_S))
+	if (mlx_is_key_down(mlx, MLX_KEY_S))
 		move_player(-1.0, player);
 	if (mlx_is_key_down(mlx, MLX_KEY_A))
 		strafe(-1.0, player);
 	if (mlx_is_key_down(mlx, MLX_KEY_D))
 		strafe(1.0, player);
-	if(mlx_is_key_down(mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(mlx, MLX_KEY_RIGHT))
 		rotate_player(0.02, player);
-	if(mlx_is_key_down(mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(mlx, MLX_KEY_LEFT))
 		rotate_player(-0.02, player);
 }
