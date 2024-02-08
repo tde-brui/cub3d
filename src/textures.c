@@ -28,13 +28,17 @@ void	convert_textures(t_texture *textures)
 {
 	int	i;
 
-	i = 0;
-	while (i != NUM_OF_TEXTURES - 2)
-	{
-		trim_newline(&(textures[i].path));
-		textures[i].texture_mlx = mlx_load_png(textures[i].path);
-		i++;
-	}
+    i = 0;
+    while (i != NUM_OF_TEXTURES - 2)
+    {
+        if (!textures[i].path)
+            png_error();
+        trim_newline(&(textures[i].path));
+        textures[i].texture_mlx = mlx_load_png(textures[i].path);
+        if (!textures[i].texture_mlx)
+            png_error();
+        i++;
+    }
 }
 
 int	select_texture(t_ray *ray)

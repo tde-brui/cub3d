@@ -94,6 +94,7 @@ void		buffer_to_image(t_player *player);
 void		calculate_texture_x(t_ray *ray, t_player *player);
 int			select_texture(t_ray *ray);
 void		strafe(double sign, t_player *player);
+void    	png_error();
 void		draw_background(t_player *player);
 
 #endif
