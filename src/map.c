@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/08 14:01:43 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/08 17:05:28 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,21 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	width = determine_width(map, i, line);
 	while (j < width)
 	{
+		printf("line[j]: %c\n", line[j]);
 		if (line[j] == 'N' || line[j] == 'E'
 			|| line[j] == 'S' || line[j] == 'W')
 			config_start_pos(map, i, j, line[j]);
 		else if (line[j] == '1' || line[j] == '0')
 			map->map[i][j] = line[j] - 48;
 		else if (ft_isspace(line[j]))
-			map->map[i][j] = 0;
+			map->map[i][j] = 2;
 		else
 			exit_error("Error\nInvalid character in map\n");
 		j++;
 	}
 	while (j < map->width)
 	{
-		map->map[i][j] = 0;
+		map->map[i][j] = 2;
 		j++;
 	}
 }
