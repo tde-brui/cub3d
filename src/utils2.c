@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   cleanup.c                                          :+:    :+:            */
+/*   utils2.c                                           :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2023/12/06 12:34:59 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 14:08:38 by tde-brui      ########   odam.nl         */
+/*   Created: 2024/02/07 17:09:29 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/07 17:10:53 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-#include <stdlib.h>
 
-int	cleanup(t_player *player, mlx_t *mlx, int errno)
+int	exit_error(char *str)
 {
-	free(player);
-	mlx_terminate(mlx);
-	return (errno);
+	printf("%s\n", str);
+	exit(1);
 }

@@ -1,4 +1,4 @@
-SOURCES		:=	main.c mlx.c player.c cleanup.c raycasting.c map.c parse.c utils.c movement.c dda.c draw.c textures.c
+SOURCES		:=	main.c mlx.c player.c cleanup.c raycasting.c map.c parse.c utils.c movement.c dda.c draw.c textures.c draw_utils.c utils2.c
 VPATH		:=	src/
 BUILD		:=	build
 OBJECTS		:=	$(addprefix $(BUILD)/, $(SOURCES:.c=.o))

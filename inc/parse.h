@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/17 10:57:09 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/07 17:14:01 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,28 @@ typedef struct rgb
 	int			g;
 	int			b;
 	uint32_t	colour;
-}t_rgb;
+}	t_rgb;
 
 
 typedef struct Texture
 {
 	enum DIRECTION	direction;
-	char 			*path;
+	char			*path;
 	mlx_texture_t	*texture_mlx;
 	t_rgb			*colour;
-}t_texture;
+}	t_texture;
 
 //textures is an array for the 6 textures
 typedef struct Map
 {
 	t_texture	*textures;
 	int			**map;
-	int			width; 
+	int			width;
 	int			height;
 	int			start_pos_x;
 	int			start_pos_y;
 	char		start_dir;
-}t_map;
+}	t_map;
 
 
 void	*ft_malloc(size_t size);
@@ -69,5 +69,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub);
 void	print_map(t_map *map);
 void	convert_textures(t_texture *textures);
 void	trim_newline(char **untrimmed);
+int		exit_error(char *str);
+int		ft_isspace(char c);
 
 #endif

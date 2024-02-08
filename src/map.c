@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/01/15 16:38:29 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/07 17:27:41 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,10 @@ void	init_rgb(t_rgb *rgb)
 
 void	init_textures(t_map *map)
 {
-	map->textures = ft_malloc(sizeof(t_texture) * 6);
-	int	i = 0;
+	int	i;
 
+	map->textures = ft_malloc(sizeof(t_texture) * 6);
+	i = 0;
 	while (i != 6)
 	{
 		map->textures[i].direction = i;
@@ -58,8 +59,6 @@ void	map_init(t_map **map, char *cub)
 
 int	determine_width(t_map *map, int i, char *line)
 {
-	if (map->height == i + 1)
-		return (ft_strlen(line));
 	return (ft_strlen(line) - 1);
 }
 
@@ -69,13 +68,8 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	int	width;
 
 	j = 0;
-	while (line[j] == ' ')
-	{
-		map->map[i][j] = 0;
-		j++;
-	}
+	printf("%s\n", line);
 	width = determine_width(map, i, line);
-	printf("width: %d\n", width);
 	while (j < width)
 	{
 		if (line[j] == 'N' || line[j] == 'E'
@@ -83,12 +77,15 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 		{
 			map->start_pos_x = j;
 			map->start_pos_y = i;
-			map->map[i][j] = 50;
+			map->start_dir = line[j];
+			map->map[i][j] = 0;
 		}
 		else if (line[j] == '1' || line[j] == '0')
 			map->map[i][j] = line[j] - 48;
-		else if (line[j] == ' ')
+		else if (ft_isspace(line[j]))
 			map->map[i][j] = 0;
+		else
+			exit_error("Error\nInvalid character in map\n");
 		j++;
 	}
 	while (j < map->width)
@@ -100,8 +97,8 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 
 void	print_map(t_map *map)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	j = 0;
