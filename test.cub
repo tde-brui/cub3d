@@ -2,9 +2,9 @@
 
 
 
-WE ./textures/planks.png
-EA ./textures/east.png
-SO ./textures/south.png
+WE       ./textures/planks.png
+EA    ./textures/east.png
+SO     ./textures/south.png
 
 NO ./textures/north.png
 
