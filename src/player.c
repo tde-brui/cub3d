@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 17:05:49 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 15:35:10 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/08 13:17:59 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,5 @@ t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
 	player->oldtime = 0;
 	player->mlx = mlx;
 	player->image = image;
-	player->map = map;
 	return (player);
 }
