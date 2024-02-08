@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/15 17:32:17 by stijn         #+#    #+#                 */
-/*   Updated: 2024/02/07 14:50:17 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/08 12:58:55 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	rotate_player(double delta_angle, t_player *player)
 	player->y_plane = x_p * sin(delta_angle) + y_p * cos(delta_angle);
 	player->x_dir = x_d * cos(delta_angle) - y_d * sin(delta_angle);
 	player->y_dir = x_d * sin(delta_angle) + y_d * cos(delta_angle);
-	//raycasting(player);
+	raycasting(player);
 }
 
 void	move_player(double sign, t_player *player)
@@ -55,7 +55,7 @@ void	move_player(double sign, t_player *player)
 		player->y_pos += player->y_dir * 0.02 * sign;
 	else if (!player->map->map[curr_y][tempx])
 		player->x_pos += player->x_dir * 0.02 * sign;
-	//raycasting(player);
+	raycasting(player);
 }
 
 void	strafe(double sign, t_player *player)
@@ -78,5 +78,5 @@ void	strafe(double sign, t_player *player)
 		player->y_pos += player->y_plane * 0.03 * sign;
 	else if (!player->map->map[curr_y][tempx])
 		player->x_pos += player->x_plane * 0.03 * sign;
-	//raycasting(player);
+	raycasting(player);
 }
