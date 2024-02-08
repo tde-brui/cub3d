@@ -1,5 +1,5 @@
 EA ./textures/east.png
-WE ./textures/west.png
+WE ./textures/planks.png
 NO ./textures/north.png
 SO ./textures/south.png
 
@@ -7,7 +7,7 @@ F 0,200,0
 C 0,0,200
 
 111111111111111
-100110010000001
+10W110010000001
 100110010000001
 100000000000001
 100000000000001
