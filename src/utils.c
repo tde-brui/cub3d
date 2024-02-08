@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 17:13:28 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/08 16:02:58 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,10 @@ int	get_height(char *file)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '1')
+		{
+			free(line);
 			continue ;
+		}
 		height++;
 		free(line);
 	}
@@ -67,7 +70,10 @@ int	get_max_width(char *file)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '1')
+		{
+			free(line);
 			continue ;
+		}
 		if (ft_strlen(line) - 1 > (size_t)width)
 			width = ft_strlen(line) - 1;
 		free(line);

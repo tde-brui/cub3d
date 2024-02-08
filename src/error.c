@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/01/19 15:21:29 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/08 16:05:15 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,3 +18,8 @@ void    png_error()
     exit(1);
 }
 
+int	exit_error(char *str)
+{
+	printf("%s\n", str);
+	exit(1);
+}
