@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 17:05:49 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/01/12 16:59:04 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2024/01/12 20:44:28 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
 		return (NULL);
 	player->x_pos = map->start_pos_x;
 	player->y_pos = map->start_pos_y;
-	determine_start_dir(map, player);
+	player->x_dir = 0;
+	player->y_dir = 1;
 	player->x_plane = 0.66;
 	player->y_plane = 0;
 	player->time = 0;
