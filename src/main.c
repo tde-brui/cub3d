@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   main.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 14:22:14 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/12 14:17:17 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,19 @@
 #include "../inc/parse.h"
 #include <stdio.h>
 
-void	print_textures(t_texture *textures)
+static void	setup_map(t_map **map, char *cub_file, mlx_t **mlx)
 {
-	for (int i = 0; i != 6; i++)
-		printf("texture%d: %s, %d\n", textures[i].direction, textures[i].path, textures[i].colour->colour);
+	unsigned int	ret_val;
+
+	ret_val = map_init(map, cub_file);
+	if (ret_val)
+	{
+		cleanup(map, mlx);
+		exit_error(ret_val);
+	}
+	
+	// ret_val = map_alloc(map, cub_file);
+	
 }
 
 int	main(int argc, char **argv)
@@ -29,17 +38,17 @@ int	main(int argc, char **argv)
 	t_player	*player;
 
 	if (argc != 2)
-		return (1);
-	if (create_window(&mlx, &image))
-		return (mlx_errno);
+		exit_error(INCORRECT_NUM_ARG);
+	create_window(&mlx, &image);
+	setup_map(&map, argv[1], &mlx);
+	return (0);
 	map = parse_cub(argv[1]);
 	print_map(map);
-	print_textures(map->textures);
 	player = player_init(mlx, image, map);
-	if (!player)
-		return (cleanup(NULL, mlx, 1));
+	// if (!player)
+	// 	return ();
 	raycasting(player);
 	mlx_loop_hook(mlx, ft_hooks, player);
 	mlx_loop(mlx);
-	return (cleanup(player, mlx, 0));
+	return (0);
 }

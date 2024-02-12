@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/08 18:07:11 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:08:25 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../inc/parse.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
+# include "error.h"
 # include "parse.h"
 # include <stdio.h>
 
@@ -73,11 +74,10 @@ typedef struct ray
 	int			texture_x;
 	t_texture	*texture;
 }	t_ray;
-
-int			create_window(mlx_t **mlx, mlx_image_t **image);
+void		create_window(mlx_t **mlx, mlx_image_t **image);
 t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map);
 void		ft_hooks(void *param);
-int			cleanup(t_player *player, mlx_t *mlx, int errno);
+void		cleanup(t_map **map, mlx_t **mlx);
 void		raycasting(t_player *player);
 void		calculate_delta_dist(t_ray *ray);
 void		calculate_step_side_dist(t_player *player, t_ray *ray);
@@ -94,7 +94,6 @@ void		buffer_to_image(t_player *player);
 void		calculate_texture_x(t_ray *ray, t_player *player);
 int			select_texture(t_ray *ray);
 void		strafe(double sign, t_player *player);
-void    	png_error();
 void		draw_background(t_player *player);
 
 #endif

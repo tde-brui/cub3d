@@ -3,34 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/08 16:02:58 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/12 12:53:30 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include "../inc/cub3d.h"
 
-void	*ft_malloc(size_t size)
+int	get_max_height(int fd)
 {
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-		exit(1);
-	return (ptr);
-}
-
-int	get_height(char *file)
-{
-	int		fd;
 	int		i;
 	int		height;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
 	height = 0;
 	while (1)
 	{
@@ -48,18 +36,15 @@ int	get_height(char *file)
 		height++;
 		free(line);
 	}
-	close(fd);
 	return (height);
 }
 
-int	get_max_width(char *file)
+int	get_max_width(int fd)
 {
-	int		fd;
 	int		i;
 	int		width;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
 	width = 0;
 	while (1)
 	{
@@ -78,7 +63,6 @@ int	get_max_width(char *file)
 			width = ft_strlen(line) - 1;
 		free(line);
 	}
-	close(fd);
 	return (width);
 }
 
