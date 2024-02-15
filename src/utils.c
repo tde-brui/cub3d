@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 17:13:28 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/15 17:10:14 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	get_height(char *file)
 			break ;
 		while (line[i] == ' ')
 			i++;
-		if (line[i] != '1')
+		if (line[i] != '1' && line[i] != '0')
 			continue ;
 		height++;
 		free(line);

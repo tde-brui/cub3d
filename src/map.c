@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/08 17:17:26 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/15 23:43:07 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,20 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	int	width;
 
 	j = 0;
-	printf("%s\n", line);
 	width = determine_width(map, i, line);
+	while (j < width && ft_isspace(line[j]))
+	{
+		map->map[i][j] = 2;
+		j++;
+	}
 	while (j < width)
 	{
-		printf("line[j]: %c\n", line[j]);
 		if (line[j] == 'N' || line[j] == 'E'
 			|| line[j] == 'S' || line[j] == 'W')
 			config_start_pos(map, i, j, line[j]);
 		else if (line[j] == '1' || line[j] == '0')
 			map->map[i][j] = line[j] - 48;
-		else if (ft_isspace(line[j]))
+		else if (line[j] == ' ')
 			map->map[i][j] = 2;
 		else
 			exit_error("Error\nInvalid character in map\n");
