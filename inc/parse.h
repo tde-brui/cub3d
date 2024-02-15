@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/12 12:21:42 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/15 12:09:59 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,13 @@ typedef struct Map
 	int			start_pos_x;
 	int			start_pos_y;
 	char		start_dir;
+	mlx_t		**mlx;
 }	t_map;
 
 int		get_max_height(int fd);
 int		get_max_width(int fd);
-int		map_init(t_map **map, char *cub_file);
-void	parse_map(char *line, t_map *map, int i, char *cub);
+int		map_init(t_map **map, char *cub_file, mlx_t **mlx);
+void	parse_map(char *line, t_map **map, int i, char *cub);
 void	print_map(t_map *map);
 void	convert_textures(t_texture *textures);
 void	trim_newline(char **untrimmed);

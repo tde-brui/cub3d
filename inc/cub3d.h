@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/12 12:08:25 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/15 10:57:09 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ typedef struct ray
 void		create_window(mlx_t **mlx, mlx_image_t **image);
 t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map);
 void		ft_hooks(void *param);
-void		cleanup(t_map **map, mlx_t **mlx);
+void		cleanup_error(t_map **map, int error_code);
 void		raycasting(t_player *player);
 void		calculate_delta_dist(t_ray *ray);
 void		calculate_step_side_dist(t_player *player, t_ray *ray);
-t_map		*parse_cub(char *cub);
+int			parse_cub(t_map **map, char *cub_file);
 uint32_t	get_colour(int r, int g, int b, int a);
 void		rotate_player(double delta_angle, t_player *player);
 void		move_player(double sign, t_player *player);
