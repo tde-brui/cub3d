@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:45:34 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:04:25 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,13 +53,11 @@ typedef struct Map
 	mlx_t		**mlx;
 }	t_map;
 
-
-void	map_init(t_map **map, char *cub);
+int		map_init(t_map **map, char *cub_file, mlx_t **mlx);
 void	config_start_pos(t_map *map, int i, int j, char direction);
-
 void	*ft_malloc(size_t size);
-int		get_height(char *file);
-int		get_max_width(char *file);
+int		get_max_height(int fd);
+int		get_max_width(int fd);
 int 	flood_from_start(t_map *map);
 void	parse_map(char *line, t_map *map, int i, char *cub);
 void	print_map(t_map *map);

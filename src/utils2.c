@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utils2.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/02/07 17:09:29 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/16 17:26:37 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/07 17:09:29 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/16 18:21:18 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
-
-int	exit_error(char *str)
-{
-	printf("%s\n", str);
-	exit(1);
-}
 
 void	ft_free_map_copy(t_map *map_copy)
 {

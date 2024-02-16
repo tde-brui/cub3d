@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:51:15 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:27:24 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	parse_cub(t_map **map, char *cub_file)
 		else if (check_if_map_line(line) && !err)
 		{
 			//parse_map cals cleanup function itself
-			parse_map(line, map, height, cub_file);
+			parse_map(line, (*map), height, cub_file);
 			height++;
 		}
 		free(line);

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:50:20 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:30:22 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void	allocate_map_array(t_map **map)
 
 	i = 0;
 	j = 0;
+	printf("map height : %d\n", (*map)->height);
+	printf("map width: %d\n", (*map)->width);
 	(*map)->map = malloc(sizeof(int *) * (*map)->height);
 	if (!(*map)->map)
 		cleanup_error(map, MALLOC_FAIL);
@@ -119,7 +121,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	width = determine_width(map, i, line);
 	while (j < width && ft_isspace(line[j]))
 	{
-		map->map[i][j] = 0;
+		(*map)->map[i][j] = 0;
 		j++;
 	}
 	while (j < width)
@@ -128,16 +130,16 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 			|| line[j] == 'S' || line[j] == 'W')
 			config_start_pos(map, i, j, line[j]);
 		else if (line[j] == '1' || line[j] == '0')
-			map->map[i][j] = line[j] - 48;
+			(*map)->map[i][j] = line[j] - 48;
 		else if (line[j] == ' ')
-			map->map[i][j] = 0;
+			(*map)->map[i][j] = 0;
 		else
 			cleanup_error(map, INVALID_CHAR_MAP);
 		j++;
 	}
-	while (j < map->width)
+	while (j < (*map)->width)
 	{
-		map->map[i][j] = 0;
+		(*map)->(*map)[i][j] = 0;
 		j++;
 	}
 }
@@ -161,3 +163,5 @@ void	print_map(t_map *map)
 		i++;
 	}
 }
+
+

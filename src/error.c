@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/16 17:46:54 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 18:19:50 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static const char	*cub3d_errors[CUB3D_ERRMAX] = {
 	"Incorrect amount of arguments",
 	"Invalid character in map",
 	"Problem opening file",
+	"Multiple start position"
 };
 
 void	exit_error(int error_code)
