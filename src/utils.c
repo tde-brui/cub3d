@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/12 12:53:30 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:54:55 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,8 @@ int	get_max_height(int fd)
 			break ;
 		while (line[i] == ' ')
 			i++;
-		if (line[i] != '1')
-		{
-			free(line);
+		if (line[i] != '1' && line[i] != '0')
 			continue ;
-		}
 		height++;
 		free(line);
 	}

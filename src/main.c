@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:27:23 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:48:01 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int argc, char **argv)
 	mlx_image_t	*image;
 	t_player	*player;
 
-	if (argc != 2)
+	if (argc != 2 || check_if_cub(argv[1]))
 		exit_error(INCORRECT_NUM_ARG);
 	create_window(&mlx, &image);
 	setup_map(&map, argv[1], &mlx);

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:22:47 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 17:50:20 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,35 +110,34 @@ static int	determine_width(t_map *map, int i, char *line)
 	return (ft_strlen(line) - 1);
 }
 
-void	parse_map(char *line, t_map **map, int i, char *cub)
+void	parse_map(char *line, t_map *map, int i, char *cub)
 {
 	int	j;
 	int	width;
 
 	j = 0;
-	printf("%s\n", line);
-	width = determine_width((*map), i, line);
+	width = determine_width(map, i, line);
+	while (j < width && ft_isspace(line[j]))
+	{
+		map->map[i][j] = 0;
+		j++;
+	}
 	while (j < width)
 	{
 		if (line[j] == 'N' || line[j] == 'E'
 			|| line[j] == 'S' || line[j] == 'W')
-		{
-			(*map)->start_pos_x = j;
-			(*map)->start_pos_y = i;
-			(*map)->start_dir = line[j];
-			(*map)->map[i][j] = 0;
-		}
+			config_start_pos(map, i, j, line[j]);
 		else if (line[j] == '1' || line[j] == '0')
-			(*map)->map[i][j] = line[j] - 48;
-		else if (ft_isspace(line[j]))
-			(*map)->map[i][j] = 0;
+			map->map[i][j] = line[j] - 48;
+		else if (line[j] == ' ')
+			map->map[i][j] = 0;
 		else
 			cleanup_error(map, INVALID_CHAR_MAP);
 		j++;
 	}
-	while (j < (*map)->width)
+	while (j < map->width)
 	{
-		(*map)->map[i][j] = 0;
+		map->map[i][j] = 0;
 		j++;
 	}
 }

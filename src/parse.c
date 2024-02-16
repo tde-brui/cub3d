@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/15 12:12:48 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:51:15 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,8 @@ int	parse_cub(t_map **map, char *cub_file)
 		}
 		free(line);
 	}
+	if (flood_from_start(map))
+		exit_error("Error\nMap is not closed at player position\n");
 	close(fd);
 	if (err)
 		cleanup_error(map, MALLOC_FAIL);
