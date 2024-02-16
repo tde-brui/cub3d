@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/16 18:19:50 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:07:02 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ static const char	*cub3d_errors[CUB3D_ERRMAX] = {
 	"Incorrect amount of arguments",
 	"Invalid character in map",
 	"Problem opening file",
-	"Multiple start position"
+	"Multiple start position",
+	"Map is not enclosed"
 };
 
 void	exit_error(int error_code)

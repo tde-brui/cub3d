@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 18:30:22 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/16 19:05:28 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int	map_init(t_map **map, char *cub_file, mlx_t **mlx)
 	//set textures and map to NULL so they can be freed without segfault in cleanup error
 	(*map)->textures = NULL;
 	(*map)->map = NULL;
+	(*map)->start_dir = '\0';
 	//upon failure init_textures, only map struct will be freed.
 	init_textures(map);
 	//if there is a problem opening files call cleanup error, 
@@ -121,7 +122,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 	width = determine_width(map, i, line);
 	while (j < width && ft_isspace(line[j]))
 	{
-		(*map)->map[i][j] = 0;
+		map->map[i][j] = 0;
 		j++;
 	}
 	while (j < width)
@@ -130,16 +131,16 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 			|| line[j] == 'S' || line[j] == 'W')
 			config_start_pos(map, i, j, line[j]);
 		else if (line[j] == '1' || line[j] == '0')
-			(*map)->map[i][j] = line[j] - 48;
+			map->map[i][j] = line[j] - 48;
 		else if (line[j] == ' ')
-			(*map)->map[i][j] = 0;
+			map->map[i][j] = 0;
 		else
-			cleanup_error(map, INVALID_CHAR_MAP);
+			cleanup_error(&map, INVALID_CHAR_MAP);
 		j++;
 	}
-	while (j < (*map)->width)
+	while (j < map->width)
 	{
-		(*map)->(*map)[i][j] = 0;
+		map->map[i][j] = 0;
 		j++;
 	}
 }
