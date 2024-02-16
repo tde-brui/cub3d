@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/15 12:15:07 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 12:49:07 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int	main(int argc, char **argv)
 		exit_error(INCORRECT_NUM_ARG);
 	create_window(&mlx, &image);
 	setup_map(&map, argv[1], &mlx);
-	// print_map(map);
-	// player = player_init(mlx, image, map);
-	// // if (!player)
-	// // 	return ();
-	// raycasting(player);
-	// mlx_loop_hook(mlx, ft_hooks, player);
-	// mlx_loop(mlx);
+	print_map(map);
+	player = player_init(mlx, image, map);
+	if (!player)
+		cleanup_error(&map, MALLOC_FAIL);
+	raycasting(player);
+	mlx_loop_hook(mlx, ft_hooks, player);
+	mlx_loop(mlx);
 	return (0);
 }
