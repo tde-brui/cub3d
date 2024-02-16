@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   player.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 17:05:49 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 15:35:10 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   player.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
+/*   Updated: 2024/02/16 16:40:32 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,21 +45,15 @@ void determine_start_dir(t_player *player)
 	}
 }
 
-t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map)
+void	player_init(t_player **player, mlx_t *mlx, mlx_image_t *image, t_map **map)
 {
-	t_player	*player;
-
-	player = malloc(sizeof(t_player));
-	if (!player)
-		return (NULL);
-	player->map = map;
-	determine_start_dir(player);
-	player->x_pos = player->map->start_pos_x + 0.5;
-	player->y_pos = player->map->start_pos_y + 0.5;
-	player->time = 0;
-	player->oldtime = 0;
-	player->mlx = mlx;
-	player->image = image;
-	player->map = map;
-	return (player);
+	(*player) = malloc(sizeof(t_player));
+	if (!(*player))
+		cleanup_error(map, MALLOC_FAIL);
+	(*player)->map = *map;
+	determine_start_dir((*player));
+	(*player)->x_pos = (*player)->map->start_pos_x + 0.5;
+	(*player)->y_pos = (*player)->map->start_pos_y + 0.5;
+	(*player)->mlx = mlx;
+	(*player)->image = image;
 }

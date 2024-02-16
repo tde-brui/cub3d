@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/15 11:25:45 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:31:57 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,10 @@ static void	cleanup_textures(t_map **map)
 	i = 0;
 	while (i != NUM_OF_TEXTURES)
 	{
-		free((*map)->textures[i].path);
+		if ((*map)->textures[i].path)
+			free((*map)->textures[i].path);
+		if ((*map)->textures[i].texture_mlx)
+			free ((*map)->textures[i].texture_mlx);
 		i++;
 	}
 	free((*map)->textures);
@@ -73,9 +76,24 @@ void	cleanup_error(t_map **map, int error_code)
 		//if the first item of map array = NULL, memory allocation failed and all the memory is already freed
 		if (map_struct->map && map_struct->map[0])
 			cleanup_map_array(map);
-		free(map_struct->map);
+		if (map_struct->map)
+			free(map_struct->map);
+		mlx_close_window(*(map_struct->mlx));
 		free(map_struct);
 	}
-	mlx_close_window(*(map_struct->mlx));
 	exit_error(error_code);
+}
+
+//this function is only called at the end of the program
+//everything is malloced nothing has failed
+void	cleanup(t_map **map, t_player **player, mlx_t *mlx)
+{
+	free(*player);
+	cleanup_textures(map);
+	cleanup_map_array(map);
+	free((*map)->map);
+	mlx_close_window(mlx);
+	mlx_terminate(mlx);
+	free(*map);
+	exit(0);
 }

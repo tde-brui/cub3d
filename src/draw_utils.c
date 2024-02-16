@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:33:08 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/12 12:10:07 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 16:38:17 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	draw_floor(t_player *player, uint32_t floor_colour)
 }
 void	draw_background(t_player *player)
 {
-	uint32_t	*ceiling_colour;
-	uint32_t	*floor_colour;
+	uint32_t	ceiling_colour;
+	uint32_t	floor_colour;
 
 	ceiling_colour = player->map->textures[CEILING].colour;
 	floor_colour = player->map->textures[FLOOR].colour;

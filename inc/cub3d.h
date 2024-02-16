@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/15 10:57:09 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:23:47 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define WIDTH 512
 # define HEIGHT 512
 # include "../libs/mlx/include/MLX42/MLX42.h"
-# include "../inc/parse.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
 # include "error.h"
@@ -33,9 +32,6 @@ typedef struct player
 
 	double		x_plane;
 	double		y_plane;
-
-	double		time;
-	double		oldtime;
 
 	t_map		*map;
 	mlx_t		*mlx;
@@ -74,10 +70,12 @@ typedef struct ray
 	int			texture_x;
 	t_texture	*texture;
 }	t_ray;
+
 void		create_window(mlx_t **mlx, mlx_image_t **image);
-t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map);
+void		player_init(t_player **player, mlx_t *mlx, mlx_image_t *image, t_map **map);
 void		ft_hooks(void *param);
 void		cleanup_error(t_map **map, int error_code);
+void		cleanup(t_map **map, t_player **player, mlx_t *mlx);
 void		raycasting(t_player *player);
 void		calculate_delta_dist(t_ray *ray);
 void		calculate_step_side_dist(t_player *player, t_ray *ray);

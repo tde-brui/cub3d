@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 12:49:07 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/16 17:27:23 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,10 @@ int	main(int argc, char **argv)
 	create_window(&mlx, &image);
 	setup_map(&map, argv[1], &mlx);
 	print_map(map);
-	player = player_init(mlx, image, map);
-	if (!player)
-		cleanup_error(&map, MALLOC_FAIL);
+	player_init(&player, mlx, image, &map);
 	raycasting(player);
 	mlx_loop_hook(mlx, ft_hooks, player);
 	mlx_loop(mlx);
+	cleanup(&map, &player, mlx);
 	return (0);
 }
