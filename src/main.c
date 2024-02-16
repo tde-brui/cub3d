@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 14:22:14 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/16 17:27:07 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,11 @@ int	main(int argc, char **argv)
 	mlx_image_t	*image;
 	t_player	*player;
 
-	if (argc != 2)
+	if (argc != 2 || check_if_cub(argv[1]))
 		return (1);
 	if (create_window(&mlx, &image))
 		return (mlx_errno);
 	map = parse_cub(argv[1]);
-	print_map(map);
 	print_textures(map->textures);
 	player = player_init(mlx, image, map);
 	if (!player)

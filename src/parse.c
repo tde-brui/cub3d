@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:52 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/16 00:07:22 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2024/02/16 17:16:10 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,49 +88,6 @@ int	check_if_map_line(char *line)
 	return (0);
 }
 
-int isClosed(t_map *map, int row, int col)
-{
-	printf("map[%d][%d] : %d\n", row, col, map->map[row][col]);
-	if (row < 0 || row >= map->height || col < 0 || col >= map->width)
-		return (1);
-	if (map->map[row][col] == 0)
-		return (0);
-	if (map->map[row][col] == 2)
-		return (1);
-	map->map[row][col] = 2;
-	int result = 1;
-	result &= isClosed(map, row + 1, col); 
-	result &= isClosed(map, row - 1, col);
-	result &= isClosed(map, row, col + 1);
-	result &= isClosed(map, row, col - 1);
-	return (result);
-}
-
-int check_if_closed(t_map *map)
-{
-	int i;
-
-	i = 0;
-	while (i < map->height)
-	{
-		if (map->map[i][0] == 0 && isClosed(map, i, 0))
-			return (1);
-		if (map->map[i][map->width - 1] == 0 && isClosed(map, i, map->width - 1))
-			return (1);
-		i++;
-	}
-	i = 0;
-	while (i < map->width)
-	{
-		if (map->map[0][i] == 0 && isClosed(map, 0, i))
-			return (1);
-		if (map->map[map->height - 1][i] == 0 && isClosed(map, map->height - 1, i))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 t_map	*parse_cub(char *cub)
 {
 	t_map		*map;
@@ -157,8 +114,8 @@ t_map	*parse_cub(char *cub)
 		}
 		free(line);
 	}
-	if (check_if_closed(map) == 1)
-		exit_error("Error\nMap is not closed\n");
+	if (flood_from_start(map))
+		exit_error("Error\nMap is not closed at player position\n");
 	close(fd);
 	convert_textures(map->textures);
 	return (map);

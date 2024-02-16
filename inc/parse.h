@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/08 14:04:12 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/16 17:26:54 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ void	config_start_pos(t_map *map, int i, int j, char direction);
 void	*ft_malloc(size_t size);
 int		get_height(char *file);
 int		get_max_width(char *file);
+int 	flood_from_start(t_map *map);
 void	parse_map(char *line, t_map *map, int i, char *cub);
 void	print_map(t_map *map);
 void	convert_textures(t_texture *textures);
 void	trim_newline(char **untrimmed);
 int		exit_error(char *str);
 int		ft_isspace(char c);
+void	ft_free_map_copy(t_map *map_copy);
+int		check_if_cub(char *cub);
 
 #endif
