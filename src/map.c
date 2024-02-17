@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 17:10:56 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   map.c                                              :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 16:33:58 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/17 17:21:31 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ void	parse_map(char *first_line, int fd, t_map *map)
 			else if (ft_isspace(line[j]))
 				map->map[i][j] = 0;
 			else
-				cleanup_error(&map, INVALID_CHAR_MAP);
+				cleanup_error(map, INVALID_CHAR_MAP);
 			j++;
 		}
 		while (j < map->width)
@@ -152,9 +152,9 @@ void	parse_map(char *first_line, int fd, t_map *map)
 	while (line)
 	{
 		if (check_if_map_line(line))
-			cleanup_error(&map, MAP_NOT_LAST);
+			cleanup_error(map, MAP_NOT_LAST);
 		if (check_if_texture_line(line))
-			cleanup_error(&map, MAP_NOT_LAST);
+			cleanup_error(map, MAP_NOT_LAST);
 		free(line);
 		line = get_next_line(fd);
 	}
