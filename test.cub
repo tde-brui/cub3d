@@ -1,20 +1,16 @@
-
-
-
-
 WE       ./textures/planks.png
 EA    ./textures/east.png
 SO     ./textures/south.png
-
 NO ./textures/north.png
-
-
-
+C 100,100,200
 F 100,200,100
 
-C 100,100,200
-
 111111
-111101
-100N11
+100001
+10W001
+100001
+111111
+100001
+100001
+100001
 111111

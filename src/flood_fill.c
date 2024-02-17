@@ -6,71 +6,71 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 16:47:15 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/16 17:23:01 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/17 13:24:43 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include <stdio.h>
 
-int	flood_fill(t_map *map, int row, int col)
-{
-	if (row < 0 || row >= map->height || col < 0 || col >= map->width)
-		return (0);
-	if (map->map[row][col] == 0)
-	{
-		map->map[row][col] = 2;
-		flood_fill(map, row + 1, col);
-		flood_fill(map, row - 1, col);
-		flood_fill(map, row, col + 1);
-		flood_fill(map, row, col - 1);
-		return (1);
-	}
-	return (0);
-}
+// int	flood_fill(t_map *map, int row, int col)
+// {
+// 	if (row < 0 || row >= map->height || col < 0 || col >= map->width)
+// 		return (0);
+// 	if (map->map[row][col] == 0)
+// 	{
+// 		map->map[row][col] = 2;
+// 		flood_fill(map, row + 1, col);
+// 		flood_fill(map, row - 1, col);
+// 		flood_fill(map, row, col + 1);
+// 		flood_fill(map, row, col - 1);
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
-int	look_for_zeros(t_map *map)
-{
-	int	i;
-	int	j;
+// int	look_for_zeros(t_map *map)
+// {
+// 	int	i;
+// 	int	j;
 
-	i = 0;
-	while (i < map->height)
-	{
-		j = 0;
-		while (j < map->width)
-		{
-			if (map->map[i][j] == 0)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	while (i < map->height)
+// 	{
+// 		j = 0;
+// 		while (j < map->width)
+// 		{
+// 			if (map->map[i][j] == 0)
+// 				return (1);
+// 			j++;
+// 		}
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
-int	flood_from_sides(t_map *map)
-{
-	int	i;
+// int	flood_from_sides(t_map *map)
+// {
+// 	int	i;
 
-	i = 0;
-	while (i < map->height)
-	{
-		flood_fill(map, i, 0);
-		flood_fill(map, i, map->width - 1);
-		i++;
-	}
-	i = 0;
-	while (i < map->width)
-	{
-		flood_fill(map, 0, i);
-		flood_fill(map, map->height - 1, i);
-		i++;
-	}
-	if (look_for_zeros(map))
-		return (0);
-	return (1);
-}
+// 	i = 0;
+// 	while (i < map->height)
+// 	{
+// 		flood_fill(map, i, 0);
+// 		flood_fill(map, i, map->width - 1);
+// 		i++;
+// 	}
+// 	i = 0;
+// 	while (i < map->width)
+// 	{
+// 		flood_fill(map, 0, i);
+// 		flood_fill(map, map->height - 1, i);
+// 		i++;
+// 	}
+// 	if (look_for_zeros(map))
+// 		return (0);
+// 	return (1);
+// }
 
 int	flood_fill_start(t_map *map_copy, int row, int col)
 {

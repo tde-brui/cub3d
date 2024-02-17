@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 16:53:32 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/17 17:15:02 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,18 +123,27 @@ int	check_if_map_line(char *line)
 	return (0);
 }
 
+void check_map_errors(t_map *map, int fd, int err)
+{
+	if (map->start_dir == '\0')
+		cleanup_error(map, NO_START_DIR);
+	if (flood_from_start(map))
+		cleanup_error(map, MAP_NOT_CLOSED);
+	close(fd);
+	if (err)
+		cleanup_error(map, MALLOC_FAIL);
+}
+
 int	parse_cub(t_map *map, char *cub_file)
 {
 	int			fd;
 	char		*line;
-	int			height;
 	int			err;
 	
 	fd = open(cub_file, O_RDONLY);
 	err = 0;
 	if (fd < 0)
 		cleanup_error(map, FILE_ERROR);
-	height = 0;
 	while (1 && !err)
 	{
 		line = get_next_line(fd);
@@ -145,16 +154,12 @@ int	parse_cub(t_map *map, char *cub_file)
 		else if (check_if_map_line(line) && !err)
 		{
 			//parse_map cals cleanup function itself
-			parse_map(line, map, height, cub_file);
-			height++;
+			parse_map(line, fd, map);
+			break ;
 		}
 		free(line);
 	}
-	if (flood_from_start(map))
-		cleanup_error(map, MAP_NOT_CLOSED);
-	close(fd);
-	if (err)
-		cleanup_error(map, MALLOC_FAIL);
+	check_map_errors(map, fd, err);
 	convert_textures(map->textures);
 	return (0);
 }

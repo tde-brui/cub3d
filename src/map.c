@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 16:08:26 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/17 17:10:56 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ static void	allocate_map_array(t_map *map)
 
 	i = 0;
 	j = 0;
-	printf("map height : %d\n", map->height);
-	printf("map width: %d\n", map->width);
 	map->map = malloc(sizeof(int *) * map->height);
 	if (!map->map)
 		cleanup_error(map, MALLOC_FAIL);
@@ -101,40 +99,64 @@ int	map_init(t_map *map, char *cub_file, mlx_t *mlx)
 	return (0);
 }
 
-static int	determine_width(t_map *map, int i, char *line)
+static int	determine_width(char *line)
 {
-	return (ft_strlen(line) - 1);
+	int i;
+
+	i = 0;
+	while (line[i] && line[i] != '\n')
+		i++;
+	return (i);
 }
 
-void	parse_map(char *line, t_map *map, int i, char *cub)
+void	parse_map(char *first_line, int fd, t_map *map)
 {
 	int	j;
+	int i;
+	char *line;
 	int	width;
 
-	j = 0;
-	width = determine_width(map, i, line);
-	while (j < width && ft_isspace(line[j]))
+	i = 0;
+	line = first_line;
+	while (line && check_if_map_line(line))
 	{
-		map->map[i][j] = 0;
-		j++;
-	}
-	while (j < width)
-	{
-		if (line[j] == 'N' || line[j] == 'E'
-			|| line[j] == 'S' || line[j] == 'W')
-			config_start_pos(map, i, j, line[j]);
-		else if (line[j] == '1' || line[j] == '0')
-			map->map[i][j] = line[j] - 48;
-		else if (line[j] == ' ')
+		j = 0;
+		width = determine_width(line);
+		while (j < width && ft_isspace(line[j]))
+		{
 			map->map[i][j] = 0;
-		else
-			cleanup_error(map, INVALID_CHAR_MAP);
-		j++;
+			j++;
+		}
+		while (j < width)
+		{
+			if (line[j] == 'N' || line[j] == 'E'
+				|| line[j] == 'S' || line[j] == 'W')
+				config_start_pos(map, i, j, line[j]);
+			else if (line[j] == '1' || line[j] == '0')
+				map->map[i][j] = line[j] - 48;
+			else if (ft_isspace(line[j]))
+				map->map[i][j] = 0;
+			else
+				cleanup_error(&map, INVALID_CHAR_MAP);
+			j++;
+		}
+		while (j < map->width)
+		{
+			map->map[i][j] = 0;
+			j++;
+		}
+		free(line);
+		line = get_next_line(fd);
+		i++;
 	}
-	while (j < map->width)
+	while (line)
 	{
-		map->map[i][j] = 0;
-		j++;
+		if (check_if_map_line(line))
+			cleanup_error(&map, MAP_NOT_LAST);
+		if (check_if_texture_line(line))
+			cleanup_error(&map, MAP_NOT_LAST);
+		free(line);
+		line = get_next_line(fd);
 	}
 }
 

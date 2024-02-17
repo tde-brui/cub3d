@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/09 14:12:41 by stijn             #+#    #+#             */
-/*   Updated: 2024/02/16 19:07:54 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   error.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/09 14:12:41 by stijn         #+#    #+#                 */
+/*   Updated: 2024/02/17 16:46:24 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# define CUB3D_ERRMAX 7
+# define CUB3D_ERRMAX 9
 
 //MLX error codes go from 0 to 16, thus Cub3d error codes start at 17
 typedef enum cub3d_errno
@@ -25,6 +25,8 @@ typedef enum cub3d_errno
 	FILE_ERROR,
     MULTIPLE_START_POS,
 	MAP_NOT_CLOSED,
+    NO_START_DIR,
+    MAP_NOT_LAST,
 } cub3d_errno_t;
 
 void	exit_error(int error_code);
