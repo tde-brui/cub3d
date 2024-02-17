@@ -6,57 +6,47 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/07 17:13:28 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/17 15:58:34 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include "../inc/cub3d.h"
 
-void	*ft_malloc(size_t size)
+int	get_max_height(int fd)
 {
-	void	*ptr;
-
-	ptr = malloc(size);
-	if (!ptr)
-		exit(1);
-	return (ptr);
-}
-
-int	get_height(char *file)
-{
-	int		fd;
-	int		i;
 	int		height;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
 	height = 0;
-	while (1)
+	line = get_next_line(fd);
+	while (line)
 	{
-		i = 0;
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '1')
-			continue ;
-		height++;
+		while (check_if_map_line(line))
+		{
+			free(line);
+			height++;
+			line = get_next_line(fd);
+			if (!line)
+				return (height);
+			if (!check_if_map_line(line))
+			{
+				free(line);
+				return (height);
+			}
+		}
 		free(line);
+		line = get_next_line(fd);
 	}
-	close(fd);
 	return (height);
 }
 
-int	get_max_width(char *file)
+int	get_max_width(int fd)
 {
-	int		fd;
 	int		i;
 	int		width;
 	char	*line;
 
-	fd = open(file, O_RDONLY);
 	width = 0;
 	while (1)
 	{
@@ -67,12 +57,14 @@ int	get_max_width(char *file)
 		while (line[i] == ' ')
 			i++;
 		if (line[i] != '1')
+		{
+			free(line);
 			continue ;
+		}
 		if (ft_strlen(line) - 1 > (size_t)width)
 			width = ft_strlen(line) - 1;
 		free(line);
 	}
-	close(fd);
 	return (width);
 }
 

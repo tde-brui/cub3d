@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   mlx.c                                              :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 15:32:04 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/08 12:59:06 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   mlx.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
+/*   Updated: 2024/02/12 10:46:02 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,22 @@
 #include <stdbool.h>
 #include <stdlib.h>
 
-int	create_window(mlx_t **mlx, mlx_image_t **image)
+void	create_window(mlx_t **mlx, mlx_image_t **image)
 {
 	*mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 0);
 	if (!(*mlx))
-	{
-		printf("%s\n", mlx_strerror(mlx_errno));
-		exit (1);
-	}
+		exit_error(mlx_errno);	
 	*image = mlx_new_image(*mlx, WIDTH, HEIGHT);
 	if (!(*image))
 	{
 		mlx_close_window(*mlx);
-		printf("%s\n", mlx_strerror(mlx_errno));
-		return (cleanup(NULL, *mlx, mlx_errno));
+		exit_error(mlx_errno);
 	}
 	if (mlx_image_to_window(*mlx, *image, 0, 0) == -1)
 	{
 		mlx_close_window(*mlx);
-		printf("%s\n", mlx_strerror(mlx_errno));
-		return (cleanup(NULL, *mlx, mlx_errno));
+		exit_error(mlx_errno);
 	}
-	return (0);
 }
 
 void	ft_hooks(void *param)

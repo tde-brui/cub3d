@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   textures.c                                         :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/01/12 15:28:33 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/07 16:34:44 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
+/*   Updated: 2024/02/16 17:52:00 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,11 @@ void	convert_textures(t_texture *textures)
     while (i != NUM_OF_TEXTURES - 2)
     {
         if (!textures[i].path)
-            png_error();
+            exit_error(PNG_FAIL);
         trim_newline(&(textures[i].path));
         textures[i].texture_mlx = mlx_load_png(textures[i].path);
         if (!textures[i].texture_mlx)
-            png_error();
+        	exit_error(PNG_FAIL);
         i++;
     }
 }

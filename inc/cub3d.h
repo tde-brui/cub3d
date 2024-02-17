@@ -6,19 +6,19 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/08 12:59:49 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/17 15:19:32 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 512
-# define HEIGHT 512
+# define WIDTH 500
+# define HEIGHT 500
 # include "../libs/mlx/include/MLX42/MLX42.h"
-# include "../inc/parse.h"
 # include "../libs/libft/libft.h"
 # include <math.h>
+# include "error.h"
 # include "parse.h"
 # include <stdio.h>
 
@@ -32,9 +32,6 @@ typedef struct player
 
 	double		x_plane;
 	double		y_plane;
-
-	double		time;
-	double		oldtime;
 
 	t_map		*map;
 	mlx_t		*mlx;
@@ -74,14 +71,15 @@ typedef struct ray
 	t_texture	*texture;
 }	t_ray;
 
-int			create_window(mlx_t **mlx, mlx_image_t **image);
-t_player	*player_init(mlx_t *mlx, mlx_image_t *image, t_map *map);
+void		create_window(mlx_t **mlx, mlx_image_t **image);
+void		player_init(t_player **player, mlx_t *mlx, mlx_image_t *image, t_map **map);
 void		ft_hooks(void *param);
-int			cleanup(t_player *player, mlx_t *mlx, int errno);
+void		cleanup_error(t_map **map, int error_code);
+void		cleanup(t_map **map, t_player **player, mlx_t *mlx);
 void		raycasting(t_player *player);
 void		calculate_delta_dist(t_ray *ray);
 void		calculate_step_side_dist(t_player *player, t_ray *ray);
-t_map		*parse_cub(char *cub);
+int			parse_cub(t_map **map, char *cub_file);
 uint32_t	get_colour(int r, int g, int b, int a);
 void		rotate_player(double delta_angle, t_player *player);
 void		move_player(double sign, t_player *player);
@@ -94,7 +92,6 @@ void		buffer_to_image(t_player *player);
 void		calculate_texture_x(t_ray *ray, t_player *player);
 int			select_texture(t_ray *ray);
 void		strafe(double sign, t_player *player);
-void    	png_error();
 void		draw_background(t_player *player);
 
 #endif
