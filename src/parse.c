@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 14:55:35 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/17 16:53:32 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,29 @@ static void	free_split(char **ptr)
 	free(ptr);
 }
 
-//split still needs to be checked for failure
-static uint32_t	parse_rgb(char *line)
+//returns a pointer to the uint_32 on success, returns NULL on return
+static int	parse_rgb(char *line, uint32_t *colour)
 {
 	char	**split;
-	int		r;
-	int		g;
-	int		b;
+	int			r;
+	int			g;
+	int			b;
 
 	split = ft_split(line, ',');
+	if (!split)
+		return (1);
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
 	free_split(split);
-	return (get_colour(r, g, b, 255));
+	*colour = get_colour(r, g, b, 255);
+	return (0);
 }
 
 static int	parse_textures(char *line, t_texture *textures)
 {
 	char		**split;
+	uint32_t	colour;
 
 	split = ft_split(line, ' ');
 	if (!split)
@@ -79,9 +83,17 @@ static int	parse_textures(char *line, t_texture *textures)
 			return (1);
 	}
 	else if (!ft_strncmp("F", split[0], 1))
-		textures[FLOOR].colour = parse_rgb(split[1]);
+	{
+		if (parse_rgb(split[1], &colour))
+			return (1);
+		textures[FLOOR].colour = colour;
+	}
 	else if (!ft_strncmp("C", split[0], 1))
-		textures[CEILING].colour = parse_rgb(split[1]);
+	{
+		if (parse_rgb(split[1], &colour))
+			return (1);
+		textures[CEILING].colour = colour;
+	}
 	free_split(split);
 	return (0);
 }

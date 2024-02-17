@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 14:42:32 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/17 16:08:26 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	allocate_map_array(t_map *map)
 	printf("map width: %d\n", map->width);
 	map->map = malloc(sizeof(int *) * map->height);
 	if (!map->map)
-		cleanup_error(&map, MALLOC_FAIL);
+		cleanup_error(map, MALLOC_FAIL);
 	while (i < map->height)
 	{
 		map->map[i] = malloc(sizeof(int) * map->width);
@@ -40,7 +40,7 @@ static void	allocate_map_array(t_map *map)
 				map->map[i] = NULL;
 				j++;	
 			}
-			cleanup_error(&map, MALLOC_FAIL);
+			cleanup_error(map, MALLOC_FAIL);
 		}
 		i++;
 	}
@@ -52,16 +52,16 @@ static void	get_map_dimensions(t_map *map, char *cub_file)
 
 	fd = open(cub_file, O_RDONLY);
 	if (fd < 0)
-		cleanup_error(&map, FILE_ERROR);
+		cleanup_error(map, FILE_ERROR);
 	map->height = get_max_height(fd);
 	if (close(fd) < 0)
-		cleanup_error(&map, FILE_ERROR);
+		cleanup_error(map, FILE_ERROR);
 	fd = open(cub_file, O_RDONLY);
 	if (fd < 0)
-		cleanup_error(&map, FILE_ERROR);
+		cleanup_error(map, FILE_ERROR);
 	map->width = get_max_width(fd);
 	if (close(fd) < 0)
-		cleanup_error(&map, FILE_ERROR);
+		cleanup_error(map, FILE_ERROR);
 }
 
 static void	init_textures(t_map *map)
@@ -71,7 +71,7 @@ static void	init_textures(t_map *map)
 	i = 0;
 	map->textures = malloc(sizeof(t_texture) * NUM_OF_TEXTURES);
 	if (!map->textures)
-		cleanup_error(&map, MALLOC_FAIL);
+		cleanup_error(map, MALLOC_FAIL);
 	while (i != NUM_OF_TEXTURES)
 	{
 		map->textures[i].direction = i;
@@ -128,7 +128,7 @@ void	parse_map(char *line, t_map *map, int i, char *cub)
 		else if (line[j] == ' ')
 			map->map[i][j] = 0;
 		else
-			cleanup_error(&map, INVALID_CHAR_MAP);
+			cleanup_error(map, INVALID_CHAR_MAP);
 		j++;
 	}
 	while (j < map->width)
