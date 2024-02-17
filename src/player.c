@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/16 17:51:55 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:58:02 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void determine_start_dir(t_player *player)
 	}
 }
 
-void	player_init(t_player **player, mlx_t *mlx, mlx_image_t *image, t_map **map)
+void	player_init(t_player **player, mlx_t *mlx, mlx_image_t *image, t_map *map)
 {
 	(*player) = malloc(sizeof(t_player));
 	if (!(*player))
 		cleanup_error(map, MALLOC_FAIL);
-	(*player)->map = *map;
+	(*player)->map = map;
 	determine_start_dir((*player));
 	(*player)->x_pos = (*player)->map->start_pos_x + 0.5;
 	(*player)->y_pos = (*player)->map->start_pos_y + 0.5;

@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 18:59:51 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/17 14:58:07 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 #include "../inc/parse.h"
 #include <stdio.h>
 
-static void	setup_map(t_map **map, char *cub_file, mlx_t **mlx)
+static void	setup_map(t_map **map, char *cub_file, mlx_t *mlx)
 {
-	unsigned int	ret_val;
-
-	ret_val = map_init(map, cub_file, mlx);
-	if (ret_val)
+	*map = malloc(sizeof(t_map));
+	if (!(*map))
 	{
-		mlx_close_window(*mlx);
-		exit_error(ret_val);
+		mlx_close_window(mlx);
+		exit_error(MALLOC_FAIL);
 	}
-	parse_cub(map, cub_file);	
+	map_init(*map, cub_file, mlx);
+	parse_cub(*map, cub_file);	
 }
 
 int	main(int argc, char **argv)
@@ -38,12 +37,12 @@ int	main(int argc, char **argv)
 	if (argc != 2 || check_if_cub(argv[1]))
 		exit_error(INCORRECT_NUM_ARG);
 	create_window(&mlx, &image);
-	setup_map(&map, argv[1], &mlx);
+	setup_map(&map, argv[1], mlx);
 	print_map(map);
-	player_init(&player, mlx, image, &map);
+	player_init(&player, mlx, image, map);
 	raycasting(player);
 	mlx_loop_hook(mlx, ft_hooks, player);
 	mlx_loop(mlx);
-	cleanup(&map, &player, mlx);
+	cleanup(map, player, mlx);
 	return (0);
 }

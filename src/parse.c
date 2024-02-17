@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 19:07:40 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/17 14:55:35 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ int	check_if_map_line(char *line)
 	return (0);
 }
 
-int	parse_cub(t_map **map, char *cub_file)
+int	parse_cub(t_map *map, char *cub_file)
 {
 	int			fd;
 	char		*line;
@@ -129,20 +129,20 @@ int	parse_cub(t_map **map, char *cub_file)
 		if (!line)
 			break ;
 		if (check_if_texture_line(line) && !err)
-			err = parse_textures(line, (*map)->textures);
+			err = parse_textures(line, map->textures);
 		else if (check_if_map_line(line) && !err)
 		{
 			//parse_map cals cleanup function itself
-			parse_map(line, (*map), height, cub_file);
+			parse_map(line, map, height, cub_file);
 			height++;
 		}
 		free(line);
 	}
-	if (flood_from_start(*map))
+	if (flood_from_start(map))
 		cleanup_error(map, MAP_NOT_CLOSED);
 	close(fd);
 	if (err)
 		cleanup_error(map, MALLOC_FAIL);
-	convert_textures((*map)->textures);
+	convert_textures(map->textures);
 	return (0);
 }

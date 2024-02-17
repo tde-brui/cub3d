@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 18:04:25 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/17 14:23:20 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ typedef struct Map
 	int			start_pos_x;
 	int			start_pos_y;
 	char		start_dir;
-	mlx_t		**mlx;
+	mlx_t		*mlx;
 }	t_map;
 
-int		map_init(t_map **map, char *cub_file, mlx_t **mlx);
+int		map_init(t_map *map, char *cub_file, mlx_t *mlx);
 void	config_start_pos(t_map *map, int i, int j, char direction);
 void	*ft_malloc(size_t size);
 int		get_max_height(int fd);
