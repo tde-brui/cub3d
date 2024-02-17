@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 18:04:25 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/17 16:56:00 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ void	*ft_malloc(size_t size);
 int		get_max_height(int fd);
 int		get_max_width(int fd);
 int 	flood_from_start(t_map *map);
-void	parse_map(char *line, t_map *map, int i, char *cub);
+void	parse_map(char *first_line, int fd, t_map *map);
+int		check_if_map_line(char *line);
 void	print_map(t_map *map);
 void	convert_textures(t_texture *textures);
 void	trim_newline(char **untrimmed);
 int		ft_isspace(char c);
 void	ft_free_map_copy(t_map *map_copy);
 int		check_if_cub(char *cub);
+int		check_if_texture_line(char *line);
 
 #endif

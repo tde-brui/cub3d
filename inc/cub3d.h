@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:41:35 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   cub3d.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 13:45:21 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/17 15:19:32 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# define WIDTH 512
-# define HEIGHT 512
+# define WIDTH 500
+# define HEIGHT 500
 # include "../libs/mlx/include/MLX42/MLX42.h"
 # include "../libs/libft/libft.h"
 # include <math.h>

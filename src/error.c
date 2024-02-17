@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/16 19:07:02 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   error.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/19 15:18:55 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/02/17 16:46:55 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@ static const char	*cub3d_errors[CUB3D_ERRMAX] = {
 	"Invalid character in map",
 	"Problem opening file",
 	"Multiple start position",
-	"Map is not enclosed"
+	"Map is not enclosed",
+	"No start position",
+	"Map not last item in file"
 };
 
 void	exit_error(int error_code)

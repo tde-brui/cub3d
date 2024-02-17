@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/16 17:54:55 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   utils.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/17 15:58:34 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,28 @@
 
 int	get_max_height(int fd)
 {
-	int		i;
 	int		height;
 	char	*line;
 
 	height = 0;
-	while (1)
+	line = get_next_line(fd);
+	while (line)
 	{
-		i = 0;
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '1' && line[i] != '0')
-			continue ;
-		height++;
+		while (check_if_map_line(line))
+		{
+			free(line);
+			height++;
+			line = get_next_line(fd);
+			if (!line)
+				return (height);
+			if (!check_if_map_line(line))
+			{
+				free(line);
+				return (height);
+			}
+		}
 		free(line);
+		line = get_next_line(fd);
 	}
 	return (height);
 }
