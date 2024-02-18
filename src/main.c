@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 14:58:07 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   main.c                                             :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/10/02 16:50:56 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/19 00:21:34 by tijmendebru   ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,10 @@ int	main(int argc, char **argv)
 	mlx_image_t	*image;
 	t_player	*player;
 
-	if (argc != 2 || check_if_cub(argv[1]))
+	if (argc != 2)
 		exit_error(INCORRECT_NUM_ARG);
+	if (check_if_cub(argv[1]))
+		exit_error(NOT_CUB_FILE);
 	create_window(&mlx, &image);
 	setup_map(&map, argv[1], mlx);
 	print_map(map);
