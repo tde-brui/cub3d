@@ -6,13 +6,13 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/19 13:48:27 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:08:25 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 
-static const char	*cub3d_errors[CUB3D_ERRMAX] = {
+static const char	*g_cub3d_errors[CUB3D_ERRMAX] = {
 	"Memory allocation failed",
 	"Failed o load PNG",
 	"Incorrect amount of arguments",
@@ -26,15 +26,15 @@ static const char	*cub3d_errors[CUB3D_ERRMAX] = {
 
 void	exit_error(int error_code)
 {
-	const char	*errString;
+	const char	*err_string;
 
 	if (!error_code)
 		return ;
 	else if (error_code <= 16)
-		errString = mlx_strerror(error_code);
+		err_string = mlx_strerror(error_code);
 	else
-		errString = cub3d_errors[error_code - 17];
-	printf("%s\n", errString);
+		err_string = g_cub3d_errors[error_code - 17];
+	printf("%s\n", err_string);
 	exit(error_code);
 }
 
@@ -50,7 +50,6 @@ static void	cleanup_map_array(t_map *map)
 	}
 }
 
-//path is either NULL or allocated can be freed either way. Same goes for textures pointer.
 static void	cleanup_textures(t_map *map)
 {
 	int	i;
@@ -71,10 +70,9 @@ static void	cleanup_textures(t_map *map)
 void	cleanup_error(t_map *map, int error_code)
 {
 	if (map)
-	{	
+	{
 		if (map->textures)
 			cleanup_textures(map);
-		//if the first item of map array = NULL, memory allocation failed and all the memory is already freed
 		if (map->map && map->map[0])
 			cleanup_map_array(map);
 		if (map->map)
