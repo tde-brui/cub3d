@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 16:25:57 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:30:25 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,9 @@ static int	parse_textures(char *line, t_texture *textures)
 	printf("split[0]: %s\n", split[0]);
 	printf("split[1]: %s\n", split[1]);
 	if (check_for_paths(split, textures))
-	{
-		free_split(split);
-		return (1);
-	}
+		return (free_split(split), 1);
 	else if (check_rgbs(split, textures))
-	{
-		free_split(split);
-		return (1);
-	}
+		return (free_split(split), 1);
 	free_split(split);
 	return (0);
 }
@@ -74,9 +68,15 @@ static int	parse_textures(char *line, t_texture *textures)
 void	check_map_errors(t_map *map, int fd, int err)
 {
 	if (map->start_dir == '\0')
+	{
+		close(fd);
 		cleanup_error(map, NO_START_DIR);
+	}
 	if (flood_from_start(map))
+	{
+		close(fd);
 		cleanup_error(map, MAP_NOT_CLOSED);
+	}
 	close(fd);
 	if (err)
 		cleanup_error(map, MALLOC_FAIL);

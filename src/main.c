@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 16:24:32 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:11:32 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,6 @@
 #include "../inc/cub3d.h"
 #include "../inc/parse.h"
 #include <stdio.h>
-
-static void	allocate_map_array(t_map *map)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	i = 0;
-	j = 0;
-	map->map = malloc(sizeof(int *) * map->height);
-	if (!map->map)
-		cleanup_error(map, MALLOC_FAIL);
-	while (i < map->height)
-	{
-		map->map[i] = malloc(sizeof(int) * map->width);
-		if (!map->map[i])
-		{
-			while (j < i)
-			{
-				free(map->map[i]);
-				map->map[i] = NULL;
-				j++;
-			}
-			cleanup_error(map, MALLOC_FAIL);
-		}
-		i++;
-	}
-}
 
 static void	setup_map(t_map **map, char *cub_file, mlx_t *mlx)
 {

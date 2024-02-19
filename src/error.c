@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/19 16:22:50 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:29:23 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static const char	*g_cub3d_errors[CUB3D_ERRMAX] = {
 	"Memory allocation failed",
-	"Failed o load PNG",
+	"Failed to load PNG",
 	"Incorrect amount of arguments",
 	"Invalid character in map",
 	"Problem opening file",
@@ -79,6 +79,7 @@ void	cleanup_error(t_map *map, int error_code)
 		if (map->map)
 			free(map->map);
 		mlx_close_window(map->mlx);
+		mlx_terminate(map->mlx);
 		free(map);
 	}
 	exit_error(error_code);
