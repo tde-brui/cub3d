@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   parse.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 17:06:40 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   parse.h                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2023/12/04 14:08:21 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/02/19 16:19:33 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,20 @@ void	config_start_pos(t_map *map, int i, int j, char direction);
 void	*ft_malloc(size_t size);
 int		get_max_height(int fd);
 int		get_max_width(int fd);
-int 	flood_from_start(t_map *map);
+int		flood_from_start(t_map *map);
 void	parse_map(char *first_line, int fd, t_map *map);
 int		check_if_map_line(char *line);
 void	print_map(t_map *map);
 void	convert_textures(t_texture *textures);
 void	trim_newline(char **untrimmed);
 int		ft_isspace(char c);
-void	ft_free_map_copy(t_map *map_copy);
+void	ft_free_map_copy(t_map *map_copy, int i);
 int		check_if_cub(char *cub);
 int		check_if_texture_line(char *line);
+void	get_map_dimensions(t_map *map, char *cub_file);
+int		check_for_paths(char **split, t_texture *textures);
+int		check_rgbs(char **split, t_texture *textures);
+int		parse_rgb(char *line, uint32_t *colour);
+
 
 #endif

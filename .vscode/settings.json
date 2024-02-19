@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "libft.h": "c",
-        "mlx42.h": "c"
+        "mlx42.h": "c",
+        "ranges": "c"
     }
 }

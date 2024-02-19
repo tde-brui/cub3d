@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   textures.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/16 17:52:00 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   textures.c                                         :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/12 15:28:33 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/02/19 15:12:24 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,17 @@ void	convert_textures(t_texture *textures)
 {
 	int	i;
 
-    i = 0;
-    while (i != NUM_OF_TEXTURES - 2)
-    {
-        if (!textures[i].path)
-            exit_error(PNG_FAIL);
-        trim_newline(&(textures[i].path));
-        textures[i].texture_mlx = mlx_load_png(textures[i].path);
-        if (!textures[i].texture_mlx)
-        	exit_error(PNG_FAIL);
-        i++;
-    }
+	i = 0;
+	while (i != NUM_OF_TEXTURES - 2)
+	{
+		if (!textures[i].path)
+			exit_error(PNG_FAIL);
+		trim_newline(&(textures[i].path));
+		textures[i].texture_mlx = mlx_load_png(textures[i].path);
+		if (!textures[i].texture_mlx)
+			exit_error(PNG_FAIL);
+		i++;
+	}
 }
 
 int	select_texture(t_ray *ray)

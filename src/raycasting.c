@@ -6,7 +6,7 @@
 /*   By: stijn <stijn@student.42.fr>                  +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/06 16:40:12 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/08 17:17:42 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/19 15:05:23 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,20 @@ void	calculate_step_side_dist(t_player *player, t_ray *ray)
 	if (ray->x_dir > 0)
 	{
 		ray->stepx = 1;
-		ray->side_dist_x = (ray->x_map + 1.0 - player->x_pos) * ray->delta_dist_x;
+		ray->side_dist_x = (ray->x_map + 1.0 - player->x_pos)
+			* ray->delta_dist_x;
 	}
 	else
 	{
 		ray->stepx = -1;
-		ray->side_dist_x = (player->x_pos - ray->x_map) * ray->delta_dist_x;
+		ray->side_dist_x = (player->x_pos - ray->x_map)
+			* ray->delta_dist_x;
 	}
 	if (ray->y_dir > 0)
 	{
 		ray->stepy = 1;
-		ray->side_dist_y = (ray->y_map + 1.0 - player->y_pos) * ray->delta_dist_y;
+		ray->side_dist_y = (ray->y_map + 1.0 - player->y_pos)
+			* ray->delta_dist_y;
 	}
 	else
 	{
