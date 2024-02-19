@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 17:15:02 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/19 14:53:32 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,7 @@ int	parse_cub(t_map *map, char *cub_file)
 	int			fd;
 	char		*line;
 	int			err;
-	
+
 	fd = open(cub_file, O_RDONLY);
 	err = 0;
 	if (fd < 0)
@@ -153,13 +153,12 @@ int	parse_cub(t_map *map, char *cub_file)
 			err = parse_textures(line, map->textures);
 		else if (check_if_map_line(line) && !err)
 		{
-			//parse_map cals cleanup function itself
 			parse_map(line, fd, map);
 			break ;
 		}
 		free(line);
 	}
 	check_map_errors(map, fd, err);
-	convert_textures(map->textures);
+	convert_textures(map->textures, map);
 	return (0);
 }

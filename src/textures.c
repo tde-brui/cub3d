@@ -6,39 +6,41 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/16 17:52:00 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:52:59 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include "../inc/cub3d.h"
 
-void	trim_newline(char **untrimmed)
+void	trim_newline(char **untrimmed, t_map *map)
 {
 	char			*trimmed;
 	unsigned int	len_trimmed;
 
 	len_trimmed = ft_strlen(*untrimmed) - 1;
 	trimmed = ft_substr(*untrimmed, 0, len_trimmed);
-	free (*untrimmed);
+	if (!trimmed)
+		cleanup_error(map, MALLOC_FAIL);
+	free(*untrimmed);
 	*untrimmed = trimmed;
 }
 
-void	convert_textures(t_texture *textures)
+void	convert_textures(t_texture *textures, t_map *map)
 {
 	int	i;
 
-    i = 0;
-    while (i != NUM_OF_TEXTURES - 2)
-    {
-        if (!textures[i].path)
-            exit_error(PNG_FAIL);
-        trim_newline(&(textures[i].path));
-        textures[i].texture_mlx = mlx_load_png(textures[i].path);
-        if (!textures[i].texture_mlx)
-        	exit_error(PNG_FAIL);
-        i++;
-    }
+	i = 0;
+	while (i != NUM_OF_TEXTURES - 2)
+	{
+		if (!textures[i].path)
+			cleanup_error(map, PNG_FAIL);
+		trim_newline(&(textures[i].path), map);
+		textures[i].texture_mlx = mlx_load_png(textures[i].path);
+		if (!textures[i].texture_mlx)
+			cleanup_error(map, PNG_FAIL);
+		i++;
+	}
 }
 
 int	select_texture(t_ray *ray)

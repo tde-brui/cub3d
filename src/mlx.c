@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 15:32:04 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/12 10:46:02 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/19 14:10:20 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	create_window(mlx_t **mlx, mlx_image_t **image)
 {
 	*mlx = mlx_init(WIDTH, HEIGHT, "cub3d", 0);
 	if (!(*mlx))
-		exit_error(mlx_errno);	
+		exit_error(mlx_errno);
 	*image = mlx_new_image(*mlx, WIDTH, HEIGHT);
 	if (!(*image))
 	{

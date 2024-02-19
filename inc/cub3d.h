@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/17 17:06:32 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/19 14:11:50 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct ray
 }	t_ray;
 
 void		create_window(mlx_t **mlx, mlx_image_t **image);
-void		player_init(t_player **player, mlx_t *mlx, mlx_image_t *image, t_map *map);
+void		player_init(t_player **player, mlx_t *mlx, mlx_image_t *img, t_map *map);
 void		ft_hooks(void *param);
 void		cleanup_error(t_map *map, int error_code);
 void		cleanup(t_map *map, t_player *player, mlx_t *mlx);
