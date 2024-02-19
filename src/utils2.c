@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utils2.c                                           :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/02/07 17:09:29 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/19 15:47:36 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utils2.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/07 17:09:29 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/19 18:02:29 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,4 +70,13 @@ int	check_if_texture_line(char *line)
 		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')
 		return (1);
 	return (0);
+}
+
+int	split_length(char **split)
+{
+	int	i;
+
+	while (split[i])
+		i++;
+	return (i);
 }
