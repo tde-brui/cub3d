@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/17 17:07:36 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/19 13:48:27 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	cleanup_textures(t_map *map)
 		if (map->textures[i].path)
 			free(map->textures[i].path);
 		if (map->textures[i].texture_mlx)
-			free (map->textures[i].texture_mlx);
+			mlx_delete_texture(map->textures[i].texture_mlx);
 		i++;
 	}
 	free(map->textures);
