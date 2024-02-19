@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 14:11:12 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 14:37:47 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:22:40 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,11 @@ static uint32_t	get_colour_pixels(int x, int y, t_texture *texture)
 	uint32_t	ret;
 
 	ret = 0;
-
 	index = (texture->texture_mlx->width * y + x) * sizeof(int);
 	ptr = &(texture->texture_mlx->pixels[index]);
-	ret += (uint32_t)*ptr++ << 24;
-	ret += (uint32_t)*ptr++ << 16;
-	ret += (uint32_t)*ptr++ << 8;
+	ret += (uint32_t) * ptr++ << 24;
+	ret += (uint32_t) * ptr++ << 16;
+	ret += (uint32_t) * ptr++ << 8;
 	ret += (uint32_t)255;
 	return (ret);
 }
@@ -51,22 +50,23 @@ void	draw_wall(t_player *player, t_ray *ray, int x)
 	t_texture	*texture;
 	double		step;
 	double		texpos;
-	uint32_t	colour;
+	int			y;
+	int			texy;
 
 	texture = &player->map->textures[select_texture(ray)];
 	calculate_texture_x(ray, player);
 	calculate_wall_height(ray);
 	step = 1.0 * texture->texture_mlx->height / ray->wall_height;
 	texpos = (ray->draw_start - HEIGHT / 2 + ray->wall_height / 2) * step;
-	colour = 0;
-	for (int y = ray->draw_start; y != ray->draw_end; y++)
+	y = ray->draw_start;
+	while (y != ray->draw_end)
 	{
-		int texy = (int)texpos & (texture->texture_mlx->height - 1);
+		texy = (int)texpos & (texture->texture_mlx->height - 1);
 		texpos += step;
-		colour = get_colour_pixels(ray->texture_x, texy, texture);
-		player->screen_buffer[y][x] = colour;
+		player->screen_buffer[y][x]
+			= get_colour_pixels(ray->texture_x, texy, texture);
+		y++;
 	}
-
 }
 
 void	buffer_to_image(t_player *player)

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 14:04:54 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:24:32 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,33 @@
 #include "../inc/cub3d.h"
 #include "../inc/parse.h"
 #include <stdio.h>
+
+static void	allocate_map_array(t_map *map)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	i = 0;
+	j = 0;
+	map->map = malloc(sizeof(int *) * map->height);
+	if (!map->map)
+		cleanup_error(map, MALLOC_FAIL);
+	while (i < map->height)
+	{
+		map->map[i] = malloc(sizeof(int) * map->width);
+		if (!map->map[i])
+		{
+			while (j < i)
+			{
+				free(map->map[i]);
+				map->map[i] = NULL;
+				j++;
+			}
+			cleanup_error(map, MALLOC_FAIL);
+		}
+		i++;
+	}
+}
 
 static void	setup_map(t_map **map, char *cub_file, mlx_t *mlx)
 {
@@ -34,8 +61,10 @@ int	main(int argc, char **argv)
 	mlx_image_t	*image;
 	t_player	*player;
 
-	if (argc != 2 || check_if_cub(argv[1]))
+	if (argc != 2)
 		exit_error(INCORRECT_NUM_ARG);
+	if (check_if_cub(argv[1]))
+		exit_error(NOT_CUB_FILE);
 	create_window(&mlx, &image);
 	setup_map(&map, argv[1], mlx);
 	print_map(map);

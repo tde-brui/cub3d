@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/19 14:08:25 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:22:50 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static const char	*g_cub3d_errors[CUB3D_ERRMAX] = {
 	"Multiple start position",
 	"Map is not enclosed",
 	"No start position",
-	"Map not last item in file"
+	"Map not last item in file",
+	"Input file is not a .cub file"
 };
 
 void	exit_error(int error_code)

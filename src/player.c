@@ -6,22 +6,25 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:05:49 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/19 14:11:30 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:32:03 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/cub3d.h"
 #include <stdlib.h>
 
-void determine_start_dir(t_player *player)
+static void	start_north(t_player *player)
+{
+	player->x_dir = 0;
+	player->y_dir = -1;
+	player->x_plane = 0.66;
+	player->y_plane = 0;
+}
+
+void	determine_start_dir(t_player *player)
 {
 	if (player->map->start_dir == 'N')
-	{
-		player->x_dir = 0;
-		player->y_dir = -1;
-		player->x_plane = 0.66;
-		player->y_plane = 0;
-	}
+		start_north(player);
 	else if (player->map->start_dir == 'S')
 	{
 		player->x_dir = 0;
@@ -45,7 +48,8 @@ void determine_start_dir(t_player *player)
 	}
 }
 
-void	player_init(t_player **player, mlx_t *mlx, mlx_image_t *img, t_map *map)
+void	player_init(t_player **player, mlx_t *mlx,
+mlx_image_t *img, t_map *map)
 {
 	(*player) = malloc(sizeof(t_player));
 	if (!(*player))

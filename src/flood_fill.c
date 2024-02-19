@@ -6,11 +6,12 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/16 16:47:15 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/17 13:24:43 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2024/02/19 15:46:43 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
+#include "../inc/cub3d.h"
 #include <stdio.h>
 
 // int	flood_fill(t_map *map, int row, int col)
@@ -89,6 +90,24 @@ int	flood_fill_start(t_map *map_copy, int row, int col)
 	return (0);
 }
 
+static t_map	*allocate_map_copy(t_map *map)
+{
+	t_map	*map_copy;
+
+	map_copy = malloc(sizeof(t_map));
+	if (!map_copy)
+		cleanup_error(map, MALLOC_FAIL);
+	map_copy->map = malloc(sizeof(int *) * map->height);
+	if (!map_copy->map)
+	{
+		free(map_copy);
+		cleanup_error(map, MALLOC_FAIL);
+	}
+	map_copy->height = map->height;
+	map_copy->width = map->width;
+	return (map_copy);
+}
+
 //need to make a map_copy because flood fill needs to mark the map
 int	flood_from_start(t_map *map)
 {
@@ -96,14 +115,16 @@ int	flood_from_start(t_map *map)
 	int		i;
 	int		j;
 
-	map_copy = malloc(sizeof(t_map));
-	map_copy->map = malloc(sizeof(int *) * map->height);
-	map_copy->height = map->height;
-	map_copy->width = map->width;
+	map_copy = allocate_map_copy(map);
 	i = 0;
 	while (i < map->height)
 	{
 		map_copy->map[i] = malloc(sizeof(int) * map->width);
+		if (!map_copy->map[i])
+		{
+			ft_free_map_copy(map_copy, i);
+			cleanup_error(map, MALLOC_FAIL);
+		}
 		j = 0;
 		while (j < map->width)
 		{
@@ -113,6 +134,6 @@ int	flood_from_start(t_map *map)
 		i++;
 	}
 	if (flood_fill_start(map_copy, map->start_pos_y, map->start_pos_x))
-		return (ft_free_map_copy(map_copy), 1);
-	return (ft_free_map_copy(map_copy), 0);
+		return (ft_free_map_copy(map_copy, i), 1);
+	return (ft_free_map_copy(map_copy, i), 0);
 }

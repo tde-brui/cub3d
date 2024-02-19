@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>            +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/17 15:58:34 by tijmendebru   ########   odam.nl         */
+/*   Updated: 2024/02/19 14:53:12 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,24 @@ int	ft_isspace(char c)
 		|| c == '\n' || c == '\v' || c == '\f' || c == '\r')
 		return (1);
 	return (0);
+}
+
+void	print_map(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (i < map->height)
+	{
+		j = 0;
+		while (j < map->width)
+		{
+			printf("%d ", map->map[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
 }

@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   error.h                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: stijn <stijn@student.42.fr>                  +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/02/09 14:12:41 by stijn         #+#    #+#                 */
-/*   Updated: 2024/02/17 16:46:24 by tijmendebru   ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   error.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/09 14:12:41 by stijn             #+#    #+#             */
+/*   Updated: 2024/02/19 16:34:30 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ERROR_H
 # define ERROR_H
 
-# define CUB3D_ERRMAX 9
+# define CUB3D_ERRMAX 10
 
 //MLX error codes go from 0 to 16, thus Cub3d error codes start at 17
 typedef enum cub3d_errno
 {
-    MALLOC_FAIL = 17,
-    PNG_FAIL,
-    INCORRECT_NUM_ARG,
+	MALLOC_FAIL = 17,
+	PNG_FAIL,
+	INCORRECT_NUM_ARG,
 	INVALID_CHAR_MAP,
 	FILE_ERROR,
-    MULTIPLE_START_POS,
+	MULTIPLE_START_POS,
 	MAP_NOT_CLOSED,
-    NO_START_DIR,
-    MAP_NOT_LAST,
-} cub3d_errno_t;
+	NO_START_DIR,
+	MAP_NOT_LAST,
+	NOT_CUB_FILE,
+}	t_cub3d_errno;
 
 void	exit_error(int error_code);
 

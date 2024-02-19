@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 14:53:32 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 16:25:57 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ static void	free_split(char **ptr)
 }
 
 //returns a pointer to the uint_32 on success, returns NULL on return
-static int	parse_rgb(char *line, uint32_t *colour)
+int	parse_rgb(char *line, uint32_t *colour)
 {
 	char	**split;
-	int			r;
-	int			g;
-	int			b;
+	int		r;
+	int		g;
+	int		b;
 
 	split = ft_split(line, ',');
 	if (!split)
@@ -51,79 +51,27 @@ static int	parse_rgb(char *line, uint32_t *colour)
 static int	parse_textures(char *line, t_texture *textures)
 {
 	char		**split;
-	uint32_t	colour;
 
 	split = ft_split(line, ' ');
 	if (!split)
 		return (1);
 	printf("split[0]: %s\n", split[0]);
 	printf("split[1]: %s\n", split[1]);
-	if (!ft_strncmp("NO", split[0], 2))
+	if (check_for_paths(split, textures))
 	{
-		textures[NORTH].path = ft_strdup(split[1]);
-		if (!(textures[NORTH].path))
-			return (1);
+		free_split(split);
+		return (1);
 	}
-	else if (!ft_strncmp("EA", split[0], 2))
+	else if (check_rgbs(split, textures))
 	{
-		textures[EAST].path = ft_strdup(split[1]);
-		if (!(textures[EAST].path))
-			return (1);
-	}
-	else if (!ft_strncmp("SO", split[0], 2))
-	{
-		textures[SOUTH].path = ft_strdup(split[1]);
-		if (!(textures[SOUTH].path))
-			return (1);
-	}
-	else if (!ft_strncmp("WE", split[0], 2))
-	{
-		textures[WEST].path = ft_strdup(split[1]);
-		if (!(textures[WEST].path))
-			return (1);
-	}
-	else if (!ft_strncmp("F", split[0], 1))
-	{
-		if (parse_rgb(split[1], &colour))
-			return (1);
-		textures[FLOOR].colour = colour;
-	}
-	else if (!ft_strncmp("C", split[0], 1))
-	{
-		if (parse_rgb(split[1], &colour))
-			return (1);
-		textures[CEILING].colour = colour;
+		free_split(split);
+		return (1);
 	}
 	free_split(split);
 	return (0);
 }
 
-int	check_if_texture_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
-		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')
-		return (1);
-	return (0);
-}
-
-int	check_if_map_line(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (line[i] == '1' || line[i] == '0')
-		return (1);
-	return (0);
-}
-
-void check_map_errors(t_map *map, int fd, int err)
+void	check_map_errors(t_map *map, int fd, int err)
 {
 	if (map->start_dir == '\0')
 		cleanup_error(map, NO_START_DIR);
