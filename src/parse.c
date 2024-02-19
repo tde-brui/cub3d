@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 17:30:25 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:15:49 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,38 @@ static int	parse_textures(char *line, t_texture *textures)
 
 	split = ft_split(line, ' ');
 	if (!split)
-		return (1);
+		return (MALLOC_FAIL);
+	if (split_length(split) != 2)
+		return (free_split(split), INVALID_SPLIT);
+	printf("amount in split: %d\n", split_length(split));
 	printf("split[0]: %s\n", split[0]);
 	printf("split[1]: %s\n", split[1]);
 	if (check_for_paths(split, textures))
-		return (free_split(split), 1);
+		return (free_split(split), MALLOC_FAIL);
 	else if (check_rgbs(split, textures))
-		return (free_split(split), 1);
+		return (free_split(split), MALLOC_FAIL);
 	free_split(split);
 	return (0);
 }
 
 void	check_map_errors(t_map *map, int fd, int err)
 {
-	if (map->start_dir == '\0')
+	if (err)
+	{
+		close(fd);
+		cleanup_error(map, err);
+	}
+	else if (map->start_dir == '\0')
 	{
 		close(fd);
 		cleanup_error(map, NO_START_DIR);
 	}
-	if (flood_from_start(map))
+	else if (flood_from_start(map))
 	{
 		close(fd);
 		cleanup_error(map, MAP_NOT_CLOSED);
 	}
 	close(fd);
-	if (err)
-		cleanup_error(map, MALLOC_FAIL);
 }
 
 int	parse_cub(t_map *map, char *cub_file)

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/19 17:29:23 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:04:56 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static const char	*g_cub3d_errors[CUB3D_ERRMAX] = {
 	"Map is not enclosed",
 	"No start position",
 	"Map not last item in file",
-	"Input file is not a .cub file"
+	"Input file is not a .cub file",
+	"Too many arguments for texture/colour"
 };
 
 void	exit_error(int error_code)
