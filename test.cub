@@ -1,7 +1,7 @@
-WE   ./textures/planks.png
-C 135,206,235
-SO     ./textures/south.png
-NO ./textures/north.png
+WE ./textures/west.png
+C         135,206,235
+SO ./textures/south.png       lalalal
+NO ./textures/north.png 
 
 F 10,128,0
 EA    ./textures/east.png
