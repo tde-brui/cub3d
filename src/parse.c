@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   parse.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 13:45:52 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/22 14:53:49 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   parse.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/20 12:59:24 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	parse_textures(char *line, t_texture *textures)
 	split = ft_split(line, ' ');
 	if (!split)
 		return (MALLOC_FAIL);
-	if (split_length(split) != 2)
+	if (split_length(split) < 2)
 		return (free_split(split), INVALID_SPLIT);
 	printf("amount in split: %d\n", split_length(split));
 	printf("split[0]: %s\n", split[0]);

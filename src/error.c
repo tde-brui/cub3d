@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   error.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/01/19 15:18:55 by sschelti      #+#    #+#                 */
-/*   Updated: 2024/02/22 14:07:49 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   error.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
+/*   Updated: 2024/02/20 13:00:24 by stijn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static const char	*g_cub3d_errors[CUB3D_ERRMAX] = {
 	"No start position",
 	"Map not last item in file",
 	"Input file is not a .cub file",
-	"Too many arguments for texture/colour",
+	"Too few arguments for texture/colour",
 	"Invalid RGB format"
 };
 
