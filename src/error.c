@@ -23,7 +23,8 @@ static const char	*g_cub3d_errors[CUB3D_ERRMAX] = {
 	"No start position",
 	"Map not last item in file",
 	"Input file is not a .cub file",
-	"Too few arguments for texture/colour"
+	"Too few arguments for texture/colour",
+	"Invalid RGB format"
 };
 
 void	exit_error(int error_code)

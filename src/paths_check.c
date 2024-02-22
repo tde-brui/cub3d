@@ -6,7 +6,7 @@
 /*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2024/02/19 16:16:48 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/19 16:17:21 by tde-brui      ########   odam.nl         */
+/*   Updated: 2024/02/22 14:51:18 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,22 @@ int	check_for_paths(char **split, t_texture *textures)
 int	check_rgbs(char **split, t_texture *textures)
 {
 	uint32_t	colour;
+	int			ret;
 
 	colour = 0;
+	ret = 0;
 	if (!ft_strncmp("F", split[0], 1))
 	{
-		if (parse_rgb(split[1], &colour))
-			return (1);
+		ret = parse_rgb(split[1], &colour);
+		if (ret)
+			return (ret);
 		textures[FLOOR].colour = colour;
 	}
 	else if (!ft_strncmp("C", split[0], 1))
 	{
-		if (parse_rgb(split[1], &colour))
-			return (1);
+		ret = parse_rgb(split[1], &colour);
+		if (ret)
+			return (ret);
 		textures[CEILING].colour = colour;
 	}
 	return (0);

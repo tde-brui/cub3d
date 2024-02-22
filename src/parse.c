@@ -29,6 +29,33 @@ static void	free_split(char **ptr)
 	free(ptr);
 }
 
+int	valid_rgb_format(char *line)
+{
+	int	i;
+	int	chars;
+	int	commas;
+
+	i = 0;
+	commas = 0;
+	while (line[i] && commas < 3)
+	{
+		chars = 0;
+		while (line[i] >= '0' && line[i] <= '9')
+		{
+			i++;
+			chars++;
+		}
+		printf("chars: %d\n", chars);
+		if (chars > 3 || chars < 1)
+			return (1);
+		if (line[i] != ',' && commas < 2)
+			return (1);
+		i++;
+		commas++;
+	}
+	return (0);
+}
+
 //returns a pointer to the uint_32 on success, returns NULL on return
 int	parse_rgb(char *line, uint32_t *colour)
 {
@@ -37,12 +64,21 @@ int	parse_rgb(char *line, uint32_t *colour)
 	int		g;
 	int		b;
 
+	printf("checking rgb for line : %s\n", line);
+	if (valid_rgb_format(line))
+		return (INVALID_RGB);
 	split = ft_split(line, ',');
 	if (!split)
 		return (1);
 	r = ft_atoi(split[0]);
+	if (r < 0 || r > 255)
+		return (free_split(split), INVALID_RGB);
 	g = ft_atoi(split[1]);
+	if (g < 0 || g > 255)
+		return (free_split(split), INVALID_RGB);
 	b = ft_atoi(split[2]);
+	if (b < 0 || b > 255)
+		return (free_split(split), INVALID_RGB);
 	free_split(split);
 	*colour = get_colour(r, g, b, 255);
 	return (0);
@@ -51,7 +87,9 @@ int	parse_rgb(char *line, uint32_t *colour)
 static int	parse_textures(char *line, t_texture *textures)
 {
 	char		**split;
+	int			ret;
 
+	ret = 0;
 	split = ft_split(line, ' ');
 	if (!split)
 		return (MALLOC_FAIL);
@@ -60,10 +98,12 @@ static int	parse_textures(char *line, t_texture *textures)
 	printf("amount in split: %d\n", split_length(split));
 	printf("split[0]: %s\n", split[0]);
 	printf("split[1]: %s\n", split[1]);
-	if (check_for_paths(split, textures))
-		return (free_split(split), MALLOC_FAIL);
-	else if (check_rgbs(split, textures))
-		return (free_split(split), MALLOC_FAIL);
+	ret = check_for_paths(split, textures);
+	if (ret)
+		return (free_split(split), ret);
+	ret = check_rgbs(split, textures);
+	if (ret)
+		return (free_split(split), ret);
 	free_split(split);
 	return (0);
 }
