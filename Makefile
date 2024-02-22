@@ -1,9 +1,9 @@
-SOURCES		:=	main.c mlx.c player.c raycasting.c map.c parse.c utils.c movement.c dda.c draw.c textures.c draw_utils.c error.c init.c flood_fill.c utils2.c paths_check.c
+SOURCES		:=	main.c mlx.c player.c raycasting.c map.c parse.c utils.c movement.c dda.c draw.c textures.c draw_utils.c error.c init.c flood_fill.c check.c get_dimensions.c free.c rgb.c
 VPATH		:=	src/
 BUILD		:=	build
 OBJECTS		:=	$(addprefix $(BUILD)/, $(SOURCES:.c=.o))
 NAME		:=	cub3d
-FLAGS		:=	-Iinclude -ldl -lglfw -pthread -lm
+FLAGS		:=	-Iinclude -ldl -lglfw -pthread -lm -g -fsanitize=address 
 CC			:=	cc
 LIBFT		:=	libs/libft/libft.a
 LIBFT_DIR	:=	libs/libft

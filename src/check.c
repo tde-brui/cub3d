@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   paths_check.c                                      :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: tde-brui <tde-brui@student.codam.nl>         +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/02/19 16:16:48 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/22 14:51:18 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   paths_check.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/19 16:16:48 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/22 16:43:11 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,43 @@ int	check_rgbs(char **split, t_texture *textures)
 			return (ret);
 		textures[CEILING].colour = colour;
 	}
+	return (0);
+}
+
+int	check_if_cub(char *cub)
+{
+	int	i;
+
+	i = 0;
+	while (cub[i])
+		i++;
+	if (cub[i - 1] != 'b' || cub[i - 2] != 'u'
+		|| cub[i - 3] != 'c' || cub[i - 4] != '.')
+		return (1);
+	return (0);
+}
+
+int	check_if_map_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == '1' || line[i] == '0')
+		return (1);
+	return (0);
+}
+
+int	check_if_texture_line(char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ')
+		i++;
+	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
+		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')
+		return (1);
 	return (0);
 }

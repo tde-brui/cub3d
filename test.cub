@@ -1,10 +1,10 @@
-WE ./textures/west.png
-C         135,206,235
-SO ./textures/south.png       lalalal
+WE ./textures/west.png 
+C  10,10,10 lksglkjslkjdslkfjdsf
+SO ./textures/south.png    ;a;;a;a
 NO ./textures/north.png 
 
-F 10,128,255
-EA    ./textures/east.png
+F 12,12,12lalalla
+EA ./textures/east.png
 
   111111111111110
   100000000000001

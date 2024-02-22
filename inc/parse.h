@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 18:01:59 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/22 17:56:22 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ void	parse_map(char *first_line, int fd, t_map *map);
 int		check_if_map_line(char *line);
 void	print_map(t_map *map);
 void	convert_textures(t_texture *textures, t_map *map);
-void	trim_newline(char **untrimmed, t_map *map);
 int		ft_isspace(char c);
 void	ft_free_map_copy(t_map *map_copy, int i);
 int		check_if_cub(char *cub);
@@ -73,5 +72,6 @@ int		check_for_paths(char **split, t_texture *textures);
 int		check_rgbs(char **split, t_texture *textures);
 int		parse_rgb(char *line, uint32_t *colour);
 int		split_length(char **split);
+void	free_split(char **ptr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/02 16:50:56 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 17:11:32 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/22 18:10:01 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 		exit_error(NOT_CUB_FILE);
 	create_window(&mlx, &image);
 	setup_map(&map, argv[1], mlx);
-	print_map(map);
 	player_init(&player, mlx, image, map);
 	raycasting(player);
 	mlx_loop_hook(mlx, ft_hooks, player);

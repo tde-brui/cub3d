@@ -3,28 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:28:33 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/20 12:47:42 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/22 17:55:43 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include "../inc/cub3d.h"
-
-void	trim_newline(char **untrimmed, t_map *map)
-{
-	char			*trimmed;
-	unsigned int	len_trimmed;
-
-	len_trimmed = ft_strlen(*untrimmed) - 1;
-	trimmed = ft_substr(*untrimmed, 0, len_trimmed);
-	if (!trimmed)
-		cleanup_error(map, MALLOC_FAIL);
-	free(*untrimmed);
-	*untrimmed = trimmed;
-}
 
 //if tetxture is not there, user did not input texture, terminate program
 //else check if last char is newline if so trim newline
@@ -37,8 +24,6 @@ void	convert_textures(t_texture *textures, t_map *map)
 	{
 		if (!textures[i].path)
 			cleanup_error(map, PNG_FAIL);
-		else if (textures[i].path[ft_strlen(textures[i].path) - 1] == '\n')
-			trim_newline(&(textures[i].path), map);
 		textures[i].texture_mlx = mlx_load_png(textures[i].path);
 		if (!textures[i].texture_mlx)
 			cleanup_error(map, PNG_FAIL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/20 12:59:24 by stijn            ###   ########.fr       */
+/*   Updated: 2024/02/22 18:03:06 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,96 +14,37 @@
 #include "../inc/cub3d.h"
 #include <stdio.h>
 
-static void	free_split(char **ptr)
+static char	*trim_newline(char *line, t_map *map)
 {
-	int	i;
+	char			*trimmed;
+	unsigned int	trimmedlen;
 
-	i = 0;
-	if (!ptr)
-		return ;
-	while (ptr[i])
-	{
-		free(ptr[i]);
-		i++;
-	}
-	free(ptr);
+	trimmedlen = ft_strlen(line) - 1;
+	trimmed = ft_substr(line, 0, trimmedlen);
+	if (!trimmed)
+		cleanup_error(map, MALLOC_FAIL);
+	return (trimmed);
 }
 
-int	valid_rgb_format(char *line)
-{
-	int	i;
-	int	chars;
-	int	commas;
-
-	i = 0;
-	commas = 0;
-	while (line[i] && commas < 3)
-	{
-		chars = 0;
-		while (line[i] >= '0' && line[i] <= '9')
-		{
-			i++;
-			chars++;
-		}
-		printf("chars: %d\n", chars);
-		if (chars > 3 || chars < 1)
-			return (1);
-		if (line[i] != ',' && commas < 2)
-			return (1);
-		i++;
-		commas++;
-	}
-	return (0);
-}
-
-//returns a pointer to the uint_32 on success, returns NULL on return
-int	parse_rgb(char *line, uint32_t *colour)
-{
-	char	**split;
-	int		r;
-	int		g;
-	int		b;
-
-	printf("checking rgb for line : %s\n", line);
-	if (valid_rgb_format(line))
-		return (INVALID_RGB);
-	split = ft_split(line, ',');
-	if (!split)
-		return (1);
-	r = ft_atoi(split[0]);
-	if (r < 0 || r > 255)
-		return (free_split(split), INVALID_RGB);
-	g = ft_atoi(split[1]);
-	if (g < 0 || g > 255)
-		return (free_split(split), INVALID_RGB);
-	b = ft_atoi(split[2]);
-	if (b < 0 || b > 255)
-		return (free_split(split), INVALID_RGB);
-	free_split(split);
-	*colour = get_colour(r, g, b, 255);
-	return (0);
-}
-
-static int	parse_textures(char *line, t_texture *textures)
+static int	parse_textures(char *line, t_map *map)
 {
 	char		**split;
 	int			ret;
 
 	ret = 0;
+	line = trim_newline(line, map);
 	split = ft_split(line, ' ');
 	if (!split)
 		return (MALLOC_FAIL);
 	if (split_length(split) < 2)
-		return (free_split(split), INVALID_SPLIT);
-	printf("amount in split: %d\n", split_length(split));
-	printf("split[0]: %s\n", split[0]);
-	printf("split[1]: %s\n", split[1]);
-	ret = check_for_paths(split, textures);
+		return (free(line), free_split(split), INVALID_SPLIT);
+	ret = check_for_paths(split, map->textures);
 	if (ret)
-		return (free_split(split), ret);
-	ret = check_rgbs(split, textures);
+		return (free(line), free_split(split), ret);
+	ret = check_rgbs(split, map->textures);
 	if (ret)
-		return (free_split(split), ret);
+		return (free(line), free_split(split), ret);
+	free(line);
 	free_split(split);
 	return (0);
 }
@@ -144,7 +85,7 @@ int	parse_cub(t_map *map, char *cub_file)
 		if (!line)
 			break ;
 		if (check_if_texture_line(line) && !err)
-			err = parse_textures(line, map->textures);
+			err = parse_textures(line, map);
 		else if (check_if_map_line(line) && !err)
 		{
 			parse_map(line, fd, map);

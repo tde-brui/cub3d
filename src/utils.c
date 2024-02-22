@@ -1,72 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   utils.c                                            :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2023/12/04 16:35:44 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/19 14:53:12 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/04 16:35:44 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/22 18:02:02 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include "../inc/cub3d.h"
-
-int	get_max_height(int fd)
-{
-	int		height;
-	char	*line;
-
-	height = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		while (check_if_map_line(line))
-		{
-			free(line);
-			height++;
-			line = get_next_line(fd);
-			if (!line)
-				return (height);
-			if (!check_if_map_line(line))
-			{
-				free(line);
-				return (height);
-			}
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	return (height);
-}
-
-int	get_max_width(int fd)
-{
-	int		i;
-	int		width;
-	char	*line;
-
-	width = 0;
-	while (1)
-	{
-		i = 0;
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		while (line[i] == ' ')
-			i++;
-		if (line[i] != '1')
-		{
-			free(line);
-			continue ;
-		}
-		if (ft_strlen(line) - 1 > (size_t)width)
-			width = ft_strlen(line) - 1;
-		free(line);
-	}
-	return (width);
-}
 
 uint32_t	get_colour(int r, int g, int b, int a )
 {
@@ -99,4 +44,14 @@ void	print_map(t_map *map)
 		printf("\n");
 		i++;
 	}
+}
+
+int	split_length(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
 }

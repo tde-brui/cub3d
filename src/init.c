@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        ::::::::            */
-/*   init.c                                             :+:    :+:            */
-/*                                                     +:+                    */
-/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
-/*                                                   +#+                      */
-/*   Created: 2024/02/08 13:59:31 by tde-brui      #+#    #+#                 */
-/*   Updated: 2024/02/19 15:51:16 by tde-brui      ########   odam.nl         */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 13:59:31 by tde-brui          #+#    #+#             */
+/*   Updated: 2024/02/22 18:10:18 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,6 @@ int	map_init(t_map *map, char *cub_file, mlx_t *mlx)
 	map->start_dir = '\0';
 	init_textures(map);
 	get_map_dimensions(map, cub_file);
-	printf("max width: %d\n", map->width);
-	printf("height: %d\n", map->height);
 	allocate_map_array(map);
 	return (0);
 }

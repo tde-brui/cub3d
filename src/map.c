@@ -6,31 +6,13 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/19 16:25:15 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/22 16:47:05 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/parse.h"
 #include "../inc/cub3d.h"
 #include <stdio.h>
-
-void	get_map_dimensions(t_map *map, char *cub_file)
-{
-	int	fd;
-
-	fd = open(cub_file, O_RDONLY);
-	if (fd < 0)
-		cleanup_error(map, FILE_ERROR);
-	map->height = get_max_height(fd);
-	if (close(fd) < 0)
-		cleanup_error(map, FILE_ERROR);
-	fd = open(cub_file, O_RDONLY);
-	if (fd < 0)
-		cleanup_error(map, FILE_ERROR);
-	map->width = get_max_width(fd);
-	if (close(fd) < 0)
-		cleanup_error(map, FILE_ERROR);
-}
 
 static int	determine_width(char *line)
 {
