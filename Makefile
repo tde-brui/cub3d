@@ -3,7 +3,7 @@ VPATH		:=	src/
 BUILD		:=	build
 OBJECTS		:=	$(addprefix $(BUILD)/, $(SOURCES:.c=.o))
 NAME		:=	cub3d
-FLAGS		:=	-Iinclude -ldl -lglfw -pthread -lm -g -fsanitize=address 
+FLAGS		:=	-Iinclude -ldl -lglfw -pthread -lm
 CC			:=	cc
 LIBFT		:=	libs/libft/libft.a
 LIBFT_DIR	:=	libs/libft

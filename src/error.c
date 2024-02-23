@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: stijn <stijn@student.42.fr>                +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/19 15:18:55 by sschelti          #+#    #+#             */
-/*   Updated: 2024/02/20 13:00:24 by stijn            ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   error.c                                            :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: stijn <stijn@student.42.fr>                  +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/01/19 15:18:55 by sschelti      #+#    #+#                 */
+/*   Updated: 2024/02/23 16:34:23 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	cleanup_error(t_map *map, int error_code)
 	{
 		if (map->textures)
 			cleanup_textures(map);
-		if (map->map && map->map[0])
+		if (map->map && map->height != 0 && map->map[0])
 			cleanup_map_array(map);
 		if (map->map)
 			free(map->map);
