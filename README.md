@@ -5,13 +5,18 @@ Using the MLX42 library.
 
 # Features
 ~ Wall collisions.
+
 ~ Wall, ceiling and floor textures.
+
 ~ Player control.
 
 # Structure of the project
 ~ src/*      Contains the C source files.
+
 ~ inc/*      Contains the header files.
+
 ~ textures/* Contains png images that can be used to display textures on the walls.
+
 ~ Makefile   A Makefile that compiles the project.
 
 # Usage
