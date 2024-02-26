@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 14:08:21 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/22 17:56:22 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:07:29 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	convert_textures(t_texture *textures, t_map *map);
 int		ft_isspace(char c);
 void	ft_free_map_copy(t_map *map_copy, int i);
 int		check_if_cub(char *cub);
-int		check_if_texture_line(char *line);
+int		check_if_texture_line(t_map *map, char *line);
 void	get_map_dimensions(t_map *map, char *cub_file);
 int		check_for_paths(char **split, t_texture *textures);
 int		check_rgbs(char **split, t_texture *textures);

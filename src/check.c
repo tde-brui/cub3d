@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   paths_check.c                                      :+:      :+:    :+:   */
+/*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 16:16:48 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/22 16:43:11 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:10:41 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,18 @@ int	check_if_map_line(char *line)
 	return (0);
 }
 
-int	check_if_texture_line(char *line)
+int	check_if_texture_line(t_map *map, char *line)
 {
-	int	i;
+	char	**split;
 
-	i = 0;
-	while (line[i] == ' ')
-		i++;
-	if (line[i] == 'N' || line[i] == 'S' || line[i] == 'W'
-		|| line[i] == 'E' || line[i] == 'F' || line[i] == 'C')
-		return (1);
+	split = ft_split(line, ' ');
+	if (!split)
+		cleanup_error(map, MALLOC_FAIL);
+	if (!ft_strncmp(split[0], "NO", 3) || !ft_strncmp(split[0], "SO", 3)
+		|| !ft_strncmp(split[0], "WE", 3) || !ft_strncmp(split[0], "EA", 3))
+		return (free_split(split), 1);
+	else if (!ft_strncmp(split[0], "F", 2) || !ft_strncmp(split[0], "C", 2))
+		return (free_split(split), 1);
+	free_split(split);
 	return (0);
 }

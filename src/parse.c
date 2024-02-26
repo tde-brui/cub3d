@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 13:45:52 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/22 18:03:06 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:06:33 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	parse_cub(t_map *map, char *cub_file)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (check_if_texture_line(line) && !err)
+		if (check_if_texture_line(map, line) && !err)
 			err = parse_textures(line, map);
 		else if (check_if_map_line(line) && !err)
 		{
