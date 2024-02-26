@@ -3,7 +3,8 @@ VPATH		:=	src/
 BUILD		:=	build
 OBJECTS		:=	$(addprefix $(BUILD)/, $(SOURCES:.c=.o))
 NAME		:=	cub3d
-FLAGS		:=	-Iinclude -ldl -lglfw -pthread -lm 
+CFLAGS		:=	-Iinclude -Wall -Wextra -Werror
+LDFLAGS		:=	-ldl -lglfw -pthread -lm
 CC			:=	cc
 LIBFT		:=	libs/libft/libft.a
 LIBFT_DIR	:=	libs/libft
@@ -15,11 +16,11 @@ all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	@printf "Compiling $(NAME)\n"
-	@$(CC) $(FLAGS) -o $@ $^
+	@$(CC) -o $@ $^ $(LDFLAGS)
 
 $(BUILD)/%.o: %.c | $(BUILD) 
 	@printf "Compiling $<\n"
-	@$(CC) -g $(FLAGS) -c $< -o $@
+	@$(CC) -g $(CFLAGS) -c $< -o $@
 
 $(BUILD):
 	@mkdir -p $(BUILD)
