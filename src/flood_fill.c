@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/16 16:47:15 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/23 17:27:16 by sschelti         ###   ########.fr       */
+/*                                                        ::::::::            */
+/*   flood_fill.c                                       :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: sschelti <sschelti@student.42.fr>            +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2024/02/16 16:47:15 by tde-brui      #+#    #+#                 */
+/*   Updated: 2024/03/07 17:24:56 by tde-brui      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,13 @@ int	flood_fill_start(t_map *map_copy, int row, int col)
 	{
 		map_copy->map[row][col] = 2;
 		return (flood_fill_start(map_copy, row + 1, col)
+			|| flood_fill_start(map_copy, row - 1, col + 1)
 			|| flood_fill_start(map_copy, row - 1, col)
+			|| flood_fill_start(map_copy, row - 1, col - 1)
 			|| flood_fill_start(map_copy, row, col + 1)
-			|| flood_fill_start(map_copy, row, col - 1));
+			|| flood_fill_start(map_copy, row + 1, col + 1)
+			|| flood_fill_start(map_copy, row, col - 1))
+			|| flood_fill_start(map_copy, row + 1, col - 1);
 	}
 	return (0);
 }
