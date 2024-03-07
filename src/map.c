@@ -6,7 +6,7 @@
 /*   By: sschelti <sschelti@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:33:58 by tde-brui          #+#    #+#             */
-/*   Updated: 2024/02/22 16:47:05 by sschelti         ###   ########.fr       */
+/*   Updated: 2024/02/26 14:08:01 by sschelti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	check_after_map(char *line, int fd, t_map *map)
 	{
 		if (check_if_map_line(line))
 			cleanup_error(map, MAP_NOT_LAST);
-		if (check_if_texture_line(line))
+		if (check_if_texture_line(map, line))
 			cleanup_error(map, MAP_NOT_LAST);
 		free(line);
 		line = get_next_line(fd);
