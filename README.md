@@ -24,3 +24,6 @@ Using the MLX42 library.
 2. clone this repository: "git clone https://github.com/tde-brui/cub3d.git".
 3. Compile the code using the Makefile: "make".
 4. Run the code!: "./cub3d <testfile with .cub extension>".
+
+\
+![image](https://github.com/user-attachments/assets/d79e244c-e9fe-428d-a622-ad2fc615eb0f)
